@@ -5,11 +5,11 @@ import {useNavigate} from "react-router-dom";
 export default function Home(props) {
 
     let navigate = useNavigate();
-    const signinConvert = () => {
+    const signinChange = () => {
         let path = `/login`;
         navigate(path);
     }
-    const signupConvert = () => {
+    const signupChange = () => {
         let path = `/signup`;
         navigate(path);
     }
@@ -27,10 +27,10 @@ export default function Home(props) {
         <div className="row">
             <div className="col">
                 <div>
-                    <button><img src="./images/SigninBtn" alt="sign in button" onClick={signinConvert}/> Sign In </button> 
+                    <button><img src="./images/SigninBtn" alt="sign in button" onClick={signinChange}/> Sign In </button> 
                 </div>
                 <div>
-                    <button><img src="./images/SignupBtn" alt="sign up button" onClick={signupConvert}/> Signup </button>
+                    <button><img src="./images/SignupBtn" alt="sign up button" onClick={signupChange}/> Signup </button>
                 </div>
             </div>
         </div>
