@@ -1,45 +1,72 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import API from '../utils/api';
-import Button from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function Profile({ loginInfo, username }) {
-    const [friends, setFriends] = useState([])
-    const [wins, setWins] = useState(0)
-    const [loses, setLoses] = useState(0)
-    const [friendSearch, setFriendSearch] = useState('')
+const ProfilePage = () => {
+    const [username, setUsername] = useState('');
+    const [profilePicture, setProfilePicture] = useState('');
+    const [wins, setWins] = useState(0);
+    const [losses, setLosses] = useState(0);
+    const [friends, setFriends] = useState([]);
+    const [searchInput, setSearchInput] = useState('');
+    const navigate = useNavigate();
+
     useEffect(() => {
+        fetchUserData();
+        // Fetch data from API or perform any other necessary initialization
+      }, []);
 
-        API.getSingleUser(username).then(data => {
-            setFriends(data.user?.friends)
-            setWins(data.user?.wins)
-            setLoses(data.user?.loses)    
-        })
-    })
 
-    let navigate = useNavigate();
+      const fetchUserData = async () => {
+        const response = await fetch('/user');
+        const data = await response.json();
 
-    const loginChange = () => {
-        let path = `/login`;
-        navigate(path);
-    }
+        setUsername(data.username);
+        setProfilePicture(data.profilePicture);
+        setWins(data.wins);
+        setLosses(data.losses);
+        setFriends(data.friends);
+      };
 
-    const handleFriendSearch = function (e) {
-        setFriendSearch(e.target.value)
-    }
-    const handleAddFriend = function (e) {
-        API.addFriend(username, friendSearch).then((data) => {
-            console.log(data)
-            setFriendSearch('')
-        })
-    }
+      const handleUsernameEdit = () => {
+        const newUsername = prompt('Enter your new username:');
+        setUsername(newUsername);
+      };
+     
+      const handleSearch = () => {
+        navigate.push(`/search?q=${searchInput}`);
+      };
 
-    const handleRemoveFriend = async function (e) {
-        const name = e.target.getAttribute("name")
-        console.log(name)
-        await API.removeFriend(username,name).then(data => {
-            console.log(data)
-        })
-    }
+      return (
+        <div>
+            <nav>
+                <input type="text" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
+                <button onClick={handleSearch}>Search</button>
+            </nav>
+
+            <h2>Profile Page</h2>
+            <div>
+                <h3> Username: {username}</h3>
+                <button onClick={handleUsernameEdit}>Edit Username</button>
+            </div>
+            <div>
+                <img src={profilePicture} alt="Profile" />
+                </div>
+            <div>
+                <h3>Wins: {wins}</h3>
+                <h3>Losses: {losses}</h3>
+            </div>
+            <div>
+                <h3>Friends</h3>
+                {friends.map((friend) => (
+                    <div key={friend.id}>
+                        <img src={friend.profilePicture} alt={friend.name}/>
+                        <span>{friend.name}</span>
+                        </div>
+                ))}
+
+            </div> 
+        </div>
+      );
 }
+
+export default ProfilePage;

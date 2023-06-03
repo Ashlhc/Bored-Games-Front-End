@@ -1,6 +1,6 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
-
+import image from "../../public/images/backgroundimg.png";
 
 export default function Home(props) {
 
@@ -15,10 +15,14 @@ export default function Home(props) {
     }
 }
 
+const styles = {
+    background: url("")
+    }
+
+function Component() {
     return (
-        <div>
-        <img style={{ backgroundImage: "url(/images/backgroundimg.png"}}></img>
-        <div style={StyleSheet.component} className="component">
+        <div style={{ backgroundImage: `url(${image})`,backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundSize:"cover" }}>
+        <div style={styles.component} className="component">
             
         </div>
 
@@ -37,3 +41,6 @@ export default function Home(props) {
         </div>
         </div>
         );
+    }
+
+    export { Component };
