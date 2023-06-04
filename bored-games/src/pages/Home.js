@@ -1,24 +1,28 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
-
+import image from "../../public/images/backgroundimg.png";
 
 export default function Home(props) {
 
     let navigate = useNavigate();
-    const signinConvert = () => {
+    const signinChange = () => {
         let path = `/login`;
         navigate(path);
     }
-    const signupConvert = () => {
+    const signupChange = () => {
         let path = `/signup`;
         navigate(path);
     }
 }
 
+const styles = {
+    background: url("")
+    }
+
+function Component() {
     return (
-        <div>
-        <img style={{ backgroundImage: "url(/images/backgroundimg.png"}}></img>
-        <div style={StyleSheet.component} className="component">
+        <div style={{ backgroundImage: `url(${image})`,backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundSize:"cover" }}>
+        <div style={styles.component} className="component">
             
         </div>
 
@@ -27,13 +31,16 @@ export default function Home(props) {
         <div className="row">
             <div className="col">
                 <div>
-                    <button><img src="./images/SigninBtn" alt="sign in button" onClick={signinConvert}/> Sign In </button> 
+                    <button><img src="./images/SigninBtn" alt="sign in button" onClick={signinChange}/> Sign In </button> 
                 </div>
                 <div>
-                    <button><img src="./images/SignupBtn" alt="sign up button" onClick={signupConvert}/> Signup </button>
+                    <button><img src="./images/SignupBtn" alt="sign up button" onClick={signupChange}/> Signup </button>
                 </div>
             </div>
         </div>
         </div>
         </div>
         );
+    }
+
+    export { Component };
