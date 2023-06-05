@@ -74,15 +74,20 @@ const SignUpForm = () => {
 
 return (
     <form style={{ backgroundImage: 'url(images/backgroundimg.png)',backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}>
+        <label htmlFor="create-username">USERNAME</label>
         <input id="create-username" type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
+        <label htmlFor='create-firstname'>FIRST NAME</label>
         <input id="create-firstname" type="text"value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+        <label htmlFor='create-lastname'>LAST NAME</label>
         <input id="create-lastname" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+        <label htmlFor='create-password'>PASSWORD</label>
         <input id="create-password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+        <label htmlFor='confirm-password'>CONFIRM PASSWORD</label>
         <input id="confirm-password" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
 
-
+<a href="" target="_blank">
         <button id="sign-up" style={{backgroundImage: 'url(public/images/SignupBtn.png)',
-        backgroundSize: 'cover', 
+        backgroundSize: '', 
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat', 
         width: '200px', 
@@ -92,6 +97,7 @@ return (
     }}onClick={handleSignUp}>
 
     </button>
+</a>
 </form>
 )
 };
