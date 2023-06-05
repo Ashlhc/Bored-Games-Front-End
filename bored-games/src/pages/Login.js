@@ -14,39 +14,40 @@ const LoginForm = () => {
         e.preventDefault();
     };
 
-const styles = {
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-    },
-    label: {
-        margin:'0 -120px -10px ',
-        marginRight: '10px',
-    },
-    input: {
-        border: 'solid black',
-        borderRadius: '25px',
-        margin: '10px 80px',
-        
-    },
-    button: {
-        margin: '150px 100px 0 ',
-        border: 'transparent',
-        position: 'relative'
+    const styles = {
+        container: {
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
         },
-    backgroundImage: {
-        backgroundImage: 'url(./images/backgroundimg.png)',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        height: '100vh',
-    },
-
-
-};
+        label: {
+          margin: '0 -35%',
+          display: 'flex',
+          alignItems:'center',
+          justifyContent: 'flex-end',
+          width: '100px',
+        },
+        input: {
+          border: 'solid black 5px',
+          borderRadius: '25px',
+          margin: '10px 0 20px',
+          padding: '0',
+          flex: '1',
+        },
+        button: {
+          border: 'transparent',
+          position: 'relative',
+        },
+        backgroundImage: {
+          backgroundImage: 'url(./images/backgroundimg.png)',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          height: '100vh',
+        },
+      };
 
 return (
     <div style={styles.backgroundImage} className="background-image">
