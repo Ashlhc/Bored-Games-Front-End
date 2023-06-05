@@ -7,98 +7,136 @@ const SignUpForm = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const handleUsernameChange = (e) => {
+        setUsername(e.target.value);
+    };
+    const handleFirstNameChange = (e) => {
+        setFirstName(e.target.value);
+    };
+    const handleLastNameChange = (e) => {
+        setLastName(e.target.value);
+    };
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+    const handleConfirmPasswordChange = (e) => {
+        setConfirmPassword(e.target.value);
+    };
+
     const handleSignUp = async (e) => {
         e.preventDefault();
-// Checks if all the inputs have text
-        if (!username || !firstName || !lastName || !password || !confirmPassword) {
-            alert('Must fill in all fields');
-            return;
-        }
-// Checks if the password is above minimum length 
-        if (password.length < 8) {
-        alert('Password must be at least 8 characters long.');
-        return;
-    }
-// Checks if the entered passwords are the same 
-        if (password !== confirmPassword) {
-            alert('Password and Confirm Password must match');
-            return;
-        }
-//  Checks if the username is already taken
-    const response = await fetch(`/api/users/user/${username}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
+    };
+
+    const styles = {
+        container: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
         },
-    });
-
-    const json = await response.json();
-    console.log(json);
-
-    if(json !== null) {
-        alert('Username already taken!');
-        return;
-    }
-
-// If all successful, adds user into the database 
-    const signup = await fetch('api/users', {
-        method: 'POST',
-        body: JSON.stringify({
-            username: username,
-            first_name: firstName,
-            last_name:lastName,
-            password: password,
-        }),
-        headers: {
-            'Content-Type': 'application/json',
+        backgroundImage: {
+            backgroundImage: 'url(./images/backgroundimg.png)',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            height: '100vh',
         },
-    });
-    
-    if (signup.ok) {
-        const loginResponse = await fetch('api/users/login', {
-            method: 'POST',
-            body: JSON.stringify({
-                username: username,
-                password: password,
-            }),
-        });
-
-        if(loginResponse.ok) {
-            window.location.href = `/profile/${username}`;
-        } else {
-            console.log('oops');
-        }
-    }
-}
+        formGroup: {
+            display: 'flex',
+            alignItems: 'center',
+            marginBottom: '20px',
+        },
+        label: {
+            width: '120px',
+            marginRight: '90px',
+            textAlign: 'right',
+        },
+        input: {
+            border: 'solid black 5px',
+            borderRadius: '25px',
+            padding: '10px',
+            flex: '1',
+        },
+        button: {
+            border: 'transparent',
+            position: 'relative',
+            alignItems: 'center',
+        },
+    };
 
 
 return (
-    <form style={{ backgroundImage: 'url(images/backgroundimg.png)',backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}>
-        <label htmlFor="create-username">USERNAME</label>
-        <input id="create-username" type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
-        <label htmlFor='create-firstname'>FIRST NAME</label>
-        <input id="create-firstname" type="text"value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
-        <label htmlFor='create-lastname'>LAST NAME</label>
-        <input id="create-lastname" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
-        <label htmlFor='create-password'>PASSWORD</label>
-        <input id="create-password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-        <label htmlFor='confirm-password'>CONFIRM PASSWORD</label>
-        <input id="confirm-password" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
-
-<a href="" target="_blank">
-        <button id="sign-up" style={{backgroundImage: 'url(public/images/SignupBtn.png)',
-        backgroundSize: '', 
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat', 
-        width: '200px', 
-        height: '50px', 
-        border: 'none',
-        cursor: 'pointer'
-    }}onClick={handleSignUp}>
-
-    </button>
-</a>
-</form>
-)
+    <div style={styles.backgroundImage} className="background-image">
+        <div style={styles.container}>
+            <form id='Signup' onSubmit={handleSignUp}>
+                <div style={styles.formGroup}>
+                    <label htmlFor='signup-username' style={styles.label}>
+                        USERNAME
+                    </label>
+                    <input
+                        id="signup-username"
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        style={styles.input}
+                    />
+                </div>
+                <div style={styles.formGroup}>
+                    <label htmlFor='first-name' style={styles.label}>
+                        FIRST NAME
+                    </label>
+                    <input
+                        id="first-name"
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        style={styles.input}
+                    />
+                </div>
+                <div style={styles.formGroup}>
+                    <label htmlFor='last-name' style={styles.label}>
+                        LAST NAME
+                    </label>
+                    <input
+                        id="last-name"
+                        type="text"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        style={styles.input}
+                    />
+                </div>
+                <div style={styles.formGroup}>
+                    <label htmlFor='signup-password' style={styles.label}>
+                        PASSWORD
+                    </label>
+                    <input
+                        id="signup-password"
+                        type="text"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        style={styles.input}
+                    />
+                </div>
+                <div style={styles.formGroup}>
+                    <label htmlFor='confirm-password' style={styles.label}>
+                        CONFIRM PASSWORD
+                    </label>
+                    <input
+                        id="confirm-password"
+                        type="text"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        style={styles.input}
+                    />
+                </div>
+                <button style={styles.button} type="submit">
+                    <img id="signup-button" src="./images/SignupBtn.png" alt="signup" />
+                </button>
+            </form>
+        </div>
+    </div>
+);
 };
+
 export default SignUpForm;

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-
+import '../css/index.css';
+import backgroundImgDesktop from '../images/backgroundimg.png';
+import backgroundImgMobile from '../images/mobilebkgimg.png';
 
 export default function Home(props) {
     let navigate = useNavigate();
@@ -14,6 +16,22 @@ export default function Home(props) {
         navigate(path);
     };
 
+const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+useEffect(() => {
+    const handleWindowResize = () => {
+        setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+        window.removeEventListener('resize', handleWindowResize);
+    };
+}, []);
+
+const backgroundImage = windowWidth <= 770 ? backgroundImgMobile : backgroundImgDesktop;
+
 const styles = {
     container: {
         display: 'flex',
@@ -22,25 +40,30 @@ const styles = {
         height: '100vh',
     },
     backgroundImage: {
-        backgroundImage: 'url(./images/backgroundimg.png)',
+        backgroundImage: `url(${backgroundImage})`,
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         height: '100vh',
     },
-    button : {
-        marginBottom: '50px',
-        marginTop: '50px',
+    signupButton: {
+        margin: '-30px -20px',
+        border: 'transparent',
+        position: 'relative',
+      },
+    signinButton: {
+        margin: '100px -20px',
+        marginTop: '350px',
         border: 'transparent',
         position: 'relative',
     },
     HangMan: {
         position: 'absolute',
-        top: '50%',
+        top: '49.5%',
         left: '50%',
         transform: 'translate(-400%, -50%) translate(300px,100px)',
         width: '200px',
-        height: '700px',
+        height: '720px',
     },
 };
 
@@ -51,12 +74,12 @@ return (
     <div className="row">
         <div className="col">
                 <div>
-                    <button style={styles.button} onClick={loginChange}>
-                        <img id="login-button" src="./images/SigninBtn.png" alt="login" />
+                    <button style={styles.signinButton} onClick={loginChange}>
+                        <img id="login-button" src="../images/SigninBtn.png" alt="login" />
                         </button> 
                 </div>
                 <div>
-                    <button style={styles.button} onClick={signupChange}>
+                    <button style={styles.signupButton} onClick={signupChange}>
                         <img id="signup-button" src="./images/SignupBtn.png" alt="signup" />
                         </button>
                 </div>
