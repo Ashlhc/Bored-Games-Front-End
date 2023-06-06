@@ -38,7 +38,7 @@ const ProfilePage = () => {
     navigate.push(`/search?q=${searchInput}`);
   };
   const hangManAnyone = () => {
-    let path = `/HangManAnyone`;
+    let path = `/hangmananyone`;
     navigate(path);
   };
 

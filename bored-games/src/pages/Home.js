@@ -4,7 +4,7 @@ import '../css/index.css';
 import backgroundImgDesktop from '../images/backgroundimg.png';
 import backgroundImgMobile from '../images/mobilebkgimg.png';
 
-export default function Home(props) {
+export default function Home() {
     let navigate = useNavigate();
 
     const loginChange = () => {
@@ -15,6 +15,7 @@ export default function Home(props) {
         let path = `/signup`;
         navigate(path);
     };
+    
 
 const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
