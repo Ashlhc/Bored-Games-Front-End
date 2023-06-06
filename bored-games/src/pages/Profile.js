@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../css/index.css';
 
 const ProfilePage = () => {
   const [username, setUsername] = useState('');
@@ -35,6 +36,10 @@ const ProfilePage = () => {
 
   const handleSearch = () => {
     navigate.push(`/search?q=${searchInput}`);
+  };
+  const hangManAnyone = () => {
+    let path = `/HangManAnyone`;
+    navigate(path);
   };
 
   const handleProfilePictureChange = (e) => {
@@ -99,7 +104,7 @@ const ProfilePage = () => {
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             transform: 'rotate(-20deg)',
             position: 'relative',
-            top: '-30px',
+            top: '75px',
             left: '-400px',
           },
           h1: {
@@ -110,6 +115,9 @@ const ProfilePage = () => {
           },
           h3: {
             textAlign: 'center',
+          },
+          button: {
+            border: 'transparent',
           }
       };
 
@@ -130,13 +138,18 @@ const ProfilePage = () => {
                 </div>
             )}
             <div>
-                <h2>{friends}</h2>
+                <h2>{friends} Friends List</h2>
             </div>
             <div>
-                <h2>{achievements}</h2>
+                <h2>{achievements} Achievements Earned</h2>
             </div>
             <div>
-                <h3>{wins} and {losses}</h3>
+                <h3>{wins} AND {losses}</h3>
+            </div>
+            <div>
+                <button style={styles.button} onClick={hangManAnyone}>
+                    <img id="hangman-button" src="./images/HangManBtn.png" alt="play hangman" />
+                </button>
             </div>
 
         </div>
