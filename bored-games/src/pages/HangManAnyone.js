@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/index.css';
-import backgroundImgDesktop from '../images/backgroundimg.png';
-import backgroundImgMobile from '../images/mobilebkgimg.png';
+import backgroundImage from '../images/backgroundimg.png';
 
 export default function HangManAnyone() {
     let navigate = useNavigate();
@@ -20,21 +19,6 @@ export default function HangManAnyone() {
         navigate(path);
     };
 
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleWindowResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-
-        window.addEventListener('resize', handleWindowResize);
-
-        return() => {
-            window.removeEventListener('resize', handleWindowResize);
-        };
-    }, []);
-
-    const backgroundImage = windowWidth <= 770 ? backgroundImgMobile : backgroundImgDesktop;
 
     const styles = {
         container: {
@@ -51,13 +35,13 @@ export default function HangManAnyone() {
             height: '100vh',
         },
         hostButton: {
-
+        border: 'transparent',
         },
         joinButton: {
-
+        border: 'transparent',
         },
         practiceButton: {
-
+        border: 'transparent',    
         },
         hangman: {
             position: 'absolute',

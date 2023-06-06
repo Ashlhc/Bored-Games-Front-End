@@ -28,6 +28,7 @@ const LoginForm = () => {
           alignItems:'center',
           justifyContent: 'flex-end',
           width: '100px',
+          color: 'white',
         },
         input: {
           border: 'solid black 5px',

@@ -118,6 +118,7 @@ const SignUpForm = () => {
             marginLeft: '-400px',
             textAlign: 'right',
             whiteSpace: 'nowrap',
+            color: 'white',
 
         },
         input: {
