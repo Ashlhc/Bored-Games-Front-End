@@ -7,7 +7,7 @@ const ProfilePage = () => {
   const [profilePicture, setProfilePicture] = useState('');
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
-  const [friends, setFriends] = useState([]);
+  const [following, setFollow] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [achievements, setAchievements] = useState(0);
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const ProfilePage = () => {
     setProfilePicture(data.profilePicture);
     setWins(data.wins);
     setLosses(data.losses);
-    setFriends(data.friends);
+    setFollow(data.following);
     setAchievements(data.achievements);
   };
 
@@ -138,7 +138,7 @@ const ProfilePage = () => {
                 </div>
             )}
             <div>
-                <h2>{friends} Friends List</h2>
+                <h2>{following} Following List</h2>
             </div>
             <div>
                 <h2>{achievements} Achievements Earned</h2>
