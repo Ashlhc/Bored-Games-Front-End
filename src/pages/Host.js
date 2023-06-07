@@ -1,0 +1,82 @@
+// import React, { useState, useEffect } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import '../css/index.css';
+// import backgroundImgDesktop from '../images/backgroundimg.png';
+// import backgroundImgMobile from '../images/mobilebkgimg.png';
+// import backgroundImgTablet from '../images/tabletbkgimg.png';
+
+
+
+// const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+//     useEffect(() => {
+//         const handleWindowResize = () => {
+//             setWindowWidth(window.innerWidth);
+//         };
+    
+//         window.addEventListener('resize', handleWindowResize);
+    
+//         return () => {
+//             window.removeEventListener('resize', handleWindowResize);
+//         };
+//     }, []);
+    
+//     let backgroundImage;
+    
+//     if (windowWidth >= 1920) {
+//         backgroundImage = backgroundImgDesktop;
+//     } else if (windowWidth >= 1280) {
+//         backgroundImage = backgroundImgDesktop;
+//     } else if (windowWidth >= 601) {
+//         backgroundImage = backgroundImgTablet;
+//     } else if (windowWidth >= 360) {
+//         backgroundImage = backgroundImgMobile;
+//     } else {
+//         backgroundImage = backgroundImgMobile;
+//     }
+
+//     const styles = {
+//         container: {
+//             display: 'flex',
+//             alignItems: 'center',
+//             justifyContent: 'center',
+//             height: '100vh',
+//         },
+//         backgroundImage: {
+//             backgroundImage: `url(${backgroundImage})`,
+//             backgroundPosition: 'center',
+//             backgroundRepeat: 'no-repeat',
+//             backgroundSize: 'cover',
+//             height: '100vh',
+//         },
+//         HangMan: {
+//             position: 'absolute',
+//             top: '49.5%',
+//             left: '50%',
+//             transform: 'translate(-400%, -50%) translate(300px,100px)',
+//             width: '200px',
+//             height: '720px',
+//         },
+//     }
+// return (
+//     <div style={styles.backgroundImage} className="background-image">
+//     <img src="./images/Hangman2.png" alt='hangman' style={styles.HangMan} />
+//     <div style={styles.container}>
+//         <div className="row">
+//             <div className="col">
+//                     <div>
+//                         <button style={styles.signinButton} onClick={loginChange}>
+//                             <img id="login-button" src="../images/SigninBtn.png" alt="login" />
+//                             </button> 
+//                     </div>
+//                     <div>
+//                         <button style={styles.signupButton} onClick={signupChange}>
+//                             <img id="signup-button" src="./images/SignupBtn.png" alt="signup" />
+//                             </button>
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+//     </div>
+//             );
+//         }
