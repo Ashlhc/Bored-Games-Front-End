@@ -23,8 +23,9 @@ export default function HangManAnyone() {
     const styles = {
         container: {
             display: 'flex',
-            alignItem: 'center',
+            flexDirection: 'column',
             justifyContent: 'center',
+            alignItems: 'center',
             height: '100vh',
         },
         backgroundImage: {
@@ -36,9 +37,12 @@ export default function HangManAnyone() {
         },
         hostButton: {
         border: 'transparent',
+        width: '120%',
+        backgroundSize: '150%',    
         },
         joinButton: {
         border: 'transparent',
+        width: '120%',
         },
         practiceButton: {
         border: 'transparent',    
@@ -48,8 +52,8 @@ export default function HangManAnyone() {
             top: '49.5%',
             left: '50%',
             transform: 'translate(-400%, -50%) translate(300px,100px)',
-            width: '200px',
-            height: '720px',
+            width: '11%',
+            height: '74%',
         },
         hangmananyone: {
 
