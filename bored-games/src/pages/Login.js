@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import API from '../utils/api';
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -10,9 +11,21 @@ const LoginForm = () => {
     const handlePasswordEdit = (e) => {
         setPassword(e.target.value);
     };
-    const loginChange = (e) => {
+    const loginChange = async (e) => {
         e.preventDefault();
-    };
+    
+
+    try {
+      const response = await API.login(username, password);
+      const token = response.token;
+
+      localStorage.setItem('token', token);
+
+      window.location.href = '/home';
+    } catch(error) {
+      console.error('Login error:', error)
+    }
+  };
 
     const styles = {
         container: {
