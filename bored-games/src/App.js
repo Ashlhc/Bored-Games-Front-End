@@ -4,6 +4,7 @@ import Home from "./pages/Home.js";
 import Profile from "./pages/Profile.js";
 import Signup from "./pages/Signup.js";
 import Login from "./pages/Login.js";
+// import HangManAnyone from "./pages/HangManAnyone.js"
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
+        {/* <Route path="/hangmananyone" element={<Profile />} /> */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login/>} />
     </Routes>

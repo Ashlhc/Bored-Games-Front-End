@@ -16,7 +16,6 @@ function Game() {
     const [incorrectGuesses, setIncorrectGuesses] = useState([]);
     const [correctGuesses, setCorrectGuesses] = useState([]);
     const [matchesPlayed, setMatchesPlayed] = useState(0);
-  
     const maxMatches = 6;
   
     const handleWordSubmit = (submittedWord) => {
@@ -25,6 +24,7 @@ function Game() {
       // Send word to other player via Socket.IO...
       socketService.sendWord(submittedWord);
     }
+
     const handleGuess = (letter) => {
         // Check guess and update game state...
         if (word.includes(letter)) {
@@ -45,12 +45,16 @@ function Game() {
           setPlayer2(prevState => ({...prevState, score: prevState.score + 1, role: "setter"}));
           setPlayer1(prevState => ({...prevState, role: "guesser"}));
         }
-        // Update matches played...
+        // Update matches played
         setMatchesPlayed(matchesPlayed + 1);
-        // Reset word and guesses...
-        setWord("");
-        setIncorrectGuesses([]);
-        setCorrectGuesses([]);
+        // if statement to run at the end of each match, if matchesPlayed = maxMatches, game ends. If matchesPlayed < maxMatches, new match starts 
+        if(matchesPlayed === maxMatches) {
+            gameOver()
+        } else {
+            setWord("");
+            setIncorrectGuesses([]);
+            setCorrectGuesses([]);
+        }
       }
     
       return (
@@ -60,18 +64,23 @@ function Game() {
           <Hangman incorrectGuesses={incorrectGuesses.length} />
           <Scoreboard player1={player1} player2={player2} />
           <Timer />
-          {player1.role === "setter" ? 
-            <WordForm onSubmit={handleWordSubmit} /> 
-            : 
-            <div>
-              {word.split('').map(letter => 
-                correctGuesses.includes(letter) ? 
-                  <Letter letter={letter} /> 
-                  : 
-                  <BlankLetter />
-              )}
-            </div>
-          }
+          {(() => {
+            if (player1.role === "setter") {
+              return <WordForm onSubmit={handleWordSubmit} />;
+            } else {
+              return (
+                <div>
+                  {word.split('').map(letter => {
+                    if (correctGuesses.includes(letter)) {
+                      return <Letter letter={letter} />;
+                    } else {
+                      return <BlankLetter />;
+                    }
+                  })}
+                </div>
+              );
+            }
+          })()}
         </div>
       );
     }
