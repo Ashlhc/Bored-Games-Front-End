@@ -10,6 +10,7 @@ const SignUpForm = () => {
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -25,11 +26,6 @@ const SignUpForm = () => {
     };
     const handleConfirmPasswordChange = (e) => {
         setConfirmPassword(e.target.value);
-    };
-    const navigate = useNavigate();
-
-    const signupChange = () => {
-        navigate("/signup");
     };
 
     const handleSignUp = async (e) => {
@@ -48,7 +44,7 @@ const SignUpForm = () => {
             alert('Password and Confirm Password must match');
             return;
         }
-    
+
         // Check if the username is already taken
         const response = await fetch(`/api/users/user/${username}`, {
             method: 'GET',
@@ -80,9 +76,9 @@ const SignUpForm = () => {
             });
     
             if (signupResponse.ok) {
-                // Signup successful, redirect to login page or perform any other necessary actions
-                alert('Signup successful! Redirect to login page.');
-                // Add your code here to redirect or perform other actions
+
+                navigate('/profile');
+
             } else {
                 // Signup failed, display error message or perform any other necessary actions
                 alert('Signup failed. Please try again.');
@@ -118,6 +114,7 @@ const SignUpForm = () => {
             marginLeft: '-400px',
             textAlign: 'right',
             whiteSpace: 'nowrap',
+            color: 'white',
 
         },
         input: {
@@ -169,7 +166,7 @@ const SignUpForm = () => {
                             </div>
                     </div>
                   </div>                    
-                    <button style={styles.button} type="submit" onClick={signupChange}>
+                    <button style={styles.button} type="submit" onClick={handleSignUp}>
                         <img id="signup-button" src="./images/SignupBtn.png" alt="signup" />
                     </button>
               </div>

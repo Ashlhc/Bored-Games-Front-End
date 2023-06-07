@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import '../css/index.css';
 import backgroundImgDesktop from '../images/backgroundimg.png';
 import backgroundImgMobile from '../images/mobilebkgimg.png';
+import backgroundImgTablet from '../images/tabletbkgimg.png';
 
 export default function Home() {
     let navigate = useNavigate();
@@ -31,7 +32,19 @@ useEffect(() => {
     };
 }, []);
 
-const backgroundImage = windowWidth <= 770 ? backgroundImgMobile : backgroundImgDesktop;
+let backgroundImage;
+
+if (windowWidth >= 1920) {
+    backgroundImage = backgroundImgDesktop;
+} else if (windowWidth >= 1280) {
+    backgroundImage = backgroundImgDesktop;
+} else if (windowWidth >= 601) {
+    backgroundImage = backgroundImgTablet;
+} else if (windowWidth >= 360) {
+    backgroundImage = backgroundImgMobile;
+} else {
+    backgroundImage = backgroundImgMobile;
+}
 
 const styles = {
     container: {
