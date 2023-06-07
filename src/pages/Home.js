@@ -60,40 +60,24 @@ const styles = {
         backgroundSize: 'cover',
         height: '100vh',
     },
-    signupButton: {
-        margin: '-30px -20px',
-        border: 'transparent',
-        position: 'relative',
-      },
-    signinButton: {
-        margin: '100px -20px',
-        marginTop: '350px',
-        border: 'transparent',
-        position: 'relative',
-    },
-    HangMan: {
-        position: 'absolute',
-        top: '49.5%',
-        left: '50%',
-        transform: 'translate(-400%, -50%) translate(300px,100px)',
-        width: '200px',
-        height: '720px',
-    },
+   
 };
 
 return (
 <div style={styles.backgroundImage} className="background-image">
-<img src="./images/Hangman2.png" alt='hangman' style={styles.HangMan} />
 <div style={styles.container}>
+    <div className='hangman-container'>
+    <img src="./images/Hangman2.png" alt='hangman' className='HangMan' />
+    </div>
     <div className="row">
         <div className="col">
                 <div>
-                    <button style={styles.signinButton} onClick={loginChange}>
+                    <button className='signinButton' onClick={loginChange}>
                         <img id="login-button" src="../images/SigninBtn.png" alt="login" />
                         </button> 
                 </div>
                 <div>
-                    <button style={styles.signupButton} onClick={signupChange}>
+                    <button className='signupButton' onClick={signupChange}>
                         <img id="signup-button" src="./images/SignupBtn.png" alt="signup" />
                         </button>
                 </div>

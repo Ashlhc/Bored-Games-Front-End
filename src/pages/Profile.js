@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API from '../utils/api';
 import '../css/index.css';
+import backgroundImgDesktop from '../images/profilebkgimg.png';
+import backgroundImgMobile from '../images/mobilepfbkg.png';
+import backgroundImgTablet from '../images/tabletpfbkg.png';
 
 const ProfilePage = () => {
   const [username, setUsername] = useState('');
@@ -78,7 +82,33 @@ const ProfilePage = () => {
       reader.readAsDataURL(file);
     }
   };
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  useEffect(() => {
+      const handleWindowResize = () => {
+          setWindowWidth(window.innerWidth);
+      };
+  
+      window.addEventListener('resize', handleWindowResize);
+  
+      return () => {
+          window.removeEventListener('resize', handleWindowResize);
+      };
+  }, []);
+  
+  let backgroundImage;
+  
+  if (windowWidth >= 1920) {
+      backgroundImage = backgroundImgDesktop;
+  } else if (windowWidth >= 1280) {
+      backgroundImage = backgroundImgDesktop;
+  } else if (windowWidth >= 601) {
+      backgroundImage = backgroundImgTablet;
+  } else if (windowWidth >= 360) {
+      backgroundImage = backgroundImgMobile;
+  } else {
+      backgroundImage = backgroundImgMobile;
+  }
       const styles = {
         container: {
             display: 'flex',
@@ -89,7 +119,7 @@ const ProfilePage = () => {
             color: 'white',
           },
           backgroundImage: {
-            backgroundImage: 'url(./images/profilebkgimg.png)',
+            backgroundImage: `url(${backgroundImage})`,
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
