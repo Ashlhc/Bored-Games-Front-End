@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Player from './Players/Player';
 import Scoreboard from './Scoreboard';
 import Timer from '../components/Timer';
@@ -10,7 +10,6 @@ function Game() {
     // State initialization
     const [player1, setPlayer1] = useState({score: 0, wins: 0});
     const [computer, setComputer] = useState({score: 0, wins: 0})
-    const [isGuesser, setIsGuesser] = useState()
     const [word, setWord] = useState("");
     const [incorrectGuesses, setIncorrectGuesses] = useState([]);
     const [correctGuesses, setCorrectGuesses] = useState([]);
@@ -35,11 +34,9 @@ function Game() {
       const handleMatchEnd = (winner) => {
         // Update player scores and roles...
         if (winner === "player1") {
-          setPlayer1(prevState => ({...prevState, score: prevState.score + 1, role: "guesser"}));
-          setComputer(prevState => ({...prevState, role: "setter"}));
+          setPlayer1(prevState => ({...prevState, score: prevState.score + 1}));
         } else {
-          setComputer(prevState => ({...prevState, score: prevState.score + 1, role: "setter"}));
-          setPlayer1(prevState => ({...prevState, role: "guesser"}));
+          setComputer(prevState => ({...prevState, score: prevState.score + 1}));
         }
         // Update matches played
         setMatchesPlayed(matchesPlayed + 1);
@@ -49,31 +46,27 @@ function Game() {
                 // -does the game over screen need its own component?
                 // *** VANILLA JS ***
                 // function gameOver() {
-                //     if (player1Score > computerScore){
-                //         // TODO: display message "(player1 username) wins the game!"
-                //         // alert(`${player1} wins the game!!`)
-                //         player1Wins++
-                //     } else if (player1Score < computerScore){
-                //         // TODO: display message "(computer username) wins the game!"
-                //         // alert(`${computer} wins the game!!`)
-                //         computerWins++
-                //     } else {
-                //         // TODO: display message "it's a tie!"
-                //         // alert('it's a tie!')
-                //         ties++
-                //     }
-                //     // TODO: write a function to update user stats in SQL database at the end of the game
-                //     // TODO: prompt host with play again button
-                // }
-        } else {
-            setWord("");
-            setIncorrectGuesses([]);
-            setCorrectGuesses([]);
-        }
+                    if (player1Score > computerScore){
+                        // TODO: display message "(player1 username) wins the game!"
+                        alert(`${player1.name} wins the game!!`)
+                        player1Wins++
+                    } else if (player1Score < computerScore){
+                        // TODO: display message "(computer username) wins the game!"
+                        // alert(`${computer} wins the game!!`)
+                        computerWins++
+                    } else {
+                        // TODO: display message "it's a tie!"
+                        // alert('it's a tie!')
+                        ties++
+                    }
+                    // TODO: write a function to update user stats in SQL database at the end of the game
+                    // TODO: prompt host with play again button
+                }
+        } 
       }
     
       return (
-        <div> hi!
+        <div> 
           <Player player={player1} />
           <Player player={computer} />
           {/* <Hangman incorrectGuesses={incorrectGuesses.length} /> */}

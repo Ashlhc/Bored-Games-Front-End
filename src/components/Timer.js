@@ -1,23 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-const Timer = ({ initialTime, timeUp }) => {
-  const [timeLeft, setTimeLeft] = useState(initialTime);
-
-  useEffect(() => {
-    if (!timeLeft) return;
-
-    const intervalId = setInterval(() => {
-      setTimeLeft(timeLeft - 1);
-    }, 1000);
-
-    return () => clearInterval(intervalId); // This represents the cleanup function
-  }, [timeLeft]);
-
-  useEffect(() => {
-    if (timeLeft === 0) {
-      timeUp();
-    }
-  }, [timeLeft, timeUp]);
+const Timer = ({ timeLeft, timeUp }) => {
+  timeLeft = 30;
+  const timeInterval = setInterval(function () {
+      if (timeLeft > 1) {
+      timer.textContent = timeLeft + ' seconds remaining';
+      timeLeft--;
+      } else if (timeLeft === 1) {
+      timer.textContent = timeLeft + ' second remaining';
+      timeLeft--;
+      } else {
+      clearInterval(timeInterval);
+      // timer.textContent = "Out of time!"
+      // setterWin()
+      }
+  }, 1000);
 
   return (
     <div>
