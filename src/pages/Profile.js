@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API from '../utils/api';
 import '../css/index.css';
+import backgroundImgDesktop from '../images/profilebkgimg.png';
+import backgroundImgMobile from '../images/mobilepfbkg.png';
+import backgroundImgTablet from '../images/tabletpfbkg.png';
 
 const ProfilePage = () => {
   const [username, setUsername] = useState('');
@@ -9,7 +13,6 @@ const ProfilePage = () => {
   const [losses, setLosses] = useState(0);
   const [following, setFollow] = useState([]);
   const [searchInput, setSearchInput] = useState('');
-  const [achievements, setAchievements] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,9 +40,8 @@ const ProfilePage = () => {
   const handleSearch = () => {
     navigate.push(`/search?q=${searchInput}`);
   };
-  const hangManAnyone = () => {
-    let path = `/hangmananyone`;
-    navigate(path);
+  const hangmanChange = () => {
+    navigate('/hangmananyone');
   };
 
   const handleProfilePictureChange = (e) => {
@@ -80,7 +82,33 @@ const ProfilePage = () => {
       reader.readAsDataURL(file);
     }
   };
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  useEffect(() => {
+      const handleWindowResize = () => {
+          setWindowWidth(window.innerWidth);
+      };
+  
+      window.addEventListener('resize', handleWindowResize);
+  
+      return () => {
+          window.removeEventListener('resize', handleWindowResize);
+      };
+  }, []);
+  
+  let backgroundImage;
+  
+  if (windowWidth >= 1920) {
+      backgroundImage = backgroundImgDesktop;
+  } else if (windowWidth >= 1280) {
+      backgroundImage = backgroundImgDesktop;
+  } else if (windowWidth >= 601) {
+      backgroundImage = backgroundImgTablet;
+  } else if (windowWidth >= 360) {
+      backgroundImage = backgroundImgMobile;
+  } else {
+      backgroundImage = backgroundImgMobile;
+  }
       const styles = {
         container: {
             display: 'flex',
@@ -88,9 +116,10 @@ const ProfilePage = () => {
             justifyContent: 'center',
             alignItems: 'center',
             height: '100vh',
+            color: 'white',
           },
           backgroundImage: {
-            backgroundImage: 'url(./images/backgroundimg.png)',
+            backgroundImage: `url(${backgroundImage})`,
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
@@ -104,7 +133,7 @@ const ProfilePage = () => {
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             transform: 'rotate(-20deg)',
             position: 'relative',
-            top: '75px',
+            top: '150px',
             left: '-400px',
           },
           h1: {
@@ -116,7 +145,7 @@ const ProfilePage = () => {
           h3: {
             textAlign: 'center',
           },
-          button: {
+          hangmanButton: {
             border: 'transparent',
           }
       };
@@ -125,7 +154,7 @@ const ProfilePage = () => {
       return (
         <div style={styles.backgroundImage} className='background-image'>
             <div style={styles.container}>
-            <h1>Welcome {username}!</h1>
+
             {profilePicture && (
                 <div style={styles.polaroid}>
                 <img src={profilePicture} alt='profile picture' />
@@ -138,16 +167,17 @@ const ProfilePage = () => {
                 </div>
             )}
             <div>
+            <h1>Welcome {username}!</h1>
+            </div>
+            <div>
                 <h2>{following} Following List</h2>
             </div>
             <div>
-                <h2>{achievements} Achievements Earned</h2>
-            </div>
-            <div>
+
                 <h3>{wins} AND {losses}</h3>
             </div>
             <div>
-                <button style={styles.button} onClick={hangManAnyone}>
+                <button style={styles.hangmanButton} onClick={hangmanChange}>
                     <img id="hangman-button" src="./images/HangManBtn.png" alt="play hangman" />
                 </button>
             </div>

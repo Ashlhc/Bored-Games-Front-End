@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import API from '../utils/api';
+import backgroundImgDesktop from '../images/backgroundimg.png';
+import backgroundImgMobile from '../images/mobilebkgimg.png';
+import backgroundImgTablet from '../images/tabletbkgimg.png';
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -10,10 +14,48 @@ const LoginForm = () => {
     const handlePasswordEdit = (e) => {
         setPassword(e.target.value);
     };
-    const loginChange = (e) => {
+    const loginChange = async (e) => {
         e.preventDefault();
-    };
+    
 
+    try {
+      const response = await API.login(username, password);
+      const token = response.token;
+
+      localStorage.setItem('token', token);
+
+      window.location.href = '/home';
+    } catch(error) {
+      console.error('Login error:', error)
+    }
+  };
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+      const handleWindowResize = () => {
+          setWindowWidth(window.innerWidth);
+      };
+  
+      window.addEventListener('resize', handleWindowResize);
+  
+      return () => {
+          window.removeEventListener('resize', handleWindowResize);
+      };
+  }, []);
+  
+  let backgroundImage;
+  
+  if (windowWidth >= 1920) {
+      backgroundImage = backgroundImgDesktop;
+  } else if (windowWidth >= 1280) {
+      backgroundImage = backgroundImgDesktop;
+  } else if (windowWidth >= 601) {
+      backgroundImage = backgroundImgTablet;
+  } else if (windowWidth >= 360) {
+      backgroundImage = backgroundImgMobile;
+  } else {
+      backgroundImage = backgroundImgMobile;
+  }
     const styles = {
         container: {
           display: 'flex',
@@ -28,6 +70,7 @@ const LoginForm = () => {
           alignItems:'center',
           justifyContent: 'flex-end',
           width: '100px',
+          color: 'white',
         },
         input: {
           border: 'solid black 5px',
@@ -41,7 +84,7 @@ const LoginForm = () => {
           position: 'relative',
         },
         backgroundImage: {
-          backgroundImage: 'url(./images/backgroundimg.png)',
+          backgroundImage: `url(${backgroundImage})`,
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',

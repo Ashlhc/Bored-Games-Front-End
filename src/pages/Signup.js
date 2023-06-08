@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/index.css';
 import backgroundImgDesktop from '../images/backgroundimg.png';
 import backgroundImgMobile from '../images/mobilebkgimg.png';
+import backgroundImgTablet from '../images/tabletbkgimg.png';
 
 const SignUpForm = () => {
     const [username, setUsername] = useState('');
@@ -10,6 +11,7 @@ const SignUpForm = () => {
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -25,11 +27,6 @@ const SignUpForm = () => {
     };
     const handleConfirmPasswordChange = (e) => {
         setConfirmPassword(e.target.value);
-    };
-    const navigate = useNavigate();
-
-    const signupChange = () => {
-        navigate("/signup");
     };
 
     const handleSignUp = async (e) => {
@@ -48,7 +45,7 @@ const SignUpForm = () => {
             alert('Password and Confirm Password must match');
             return;
         }
-    
+
         // Check if the username is already taken
         const response = await fetch(`/api/users/user/${username}`, {
             method: 'GET',
@@ -80,9 +77,9 @@ const SignUpForm = () => {
             });
     
             if (signupResponse.ok) {
-                // Signup successful, redirect to login page or perform any other necessary actions
-                alert('Signup successful! Redirect to login page.');
-                // Add your code here to redirect or perform other actions
+
+                navigate('/profile');
+
             } else {
                 // Signup failed, display error message or perform any other necessary actions
                 alert('Signup failed. Please try again.');
@@ -95,7 +92,33 @@ const SignUpForm = () => {
             // Add your code here to handle the signup error
         }
     };
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+    
+        window.addEventListener('resize', handleWindowResize);
+    
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, []);
+    
+    let backgroundImage;
+    
+    if (windowWidth >= 1920) {
+        backgroundImage = backgroundImgDesktop;
+    } else if (windowWidth >= 1280) {
+        backgroundImage = backgroundImgDesktop;
+    } else if (windowWidth >= 601) {
+        backgroundImage = backgroundImgTablet;
+    } else if (windowWidth >= 360) {
+        backgroundImage = backgroundImgMobile;
+    } else {
+        backgroundImage = backgroundImgMobile;
+    }
     const styles = {
         container: {
             display: 'flex',
@@ -105,7 +128,7 @@ const SignUpForm = () => {
             height: '100vh',
         },
         backgroundImage: {
-            backgroundImage: `url(${backgroundImgDesktop})`,
+            backgroundImage: `url(${backgroundImage})`,
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
@@ -118,6 +141,7 @@ const SignUpForm = () => {
             marginLeft: '-400px',
             textAlign: 'right',
             whiteSpace: 'nowrap',
+            color: 'white',
 
         },
         input: {
@@ -169,7 +193,7 @@ const SignUpForm = () => {
                             </div>
                     </div>
                   </div>                    
-                    <button style={styles.button} type="submit" onClick={signupChange}>
+                    <button style={styles.button} type="submit" onClick={handleSignUp}>
                         <img id="signup-button" src="./images/SignupBtn.png" alt="signup" />
                     </button>
               </div>
