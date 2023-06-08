@@ -10,8 +10,8 @@ import socketService from '../services/socketServices';
 
 function Game() {
     // State initialization
-    const [player1, setPlayer1] = useState({score: 0, wins: 0, role: "setter"});
-    const [player2, setPlayer2] = useState({score: 0, wins: 0, role: "guesser"});
+    const [myStats, setMyStats] = useState({score: 0, wins: 0});
+    const [isGuesser, setIsGuesser] = useState()
     const [word, setWord] = useState("");
     const [incorrectGuesses, setIncorrectGuesses] = useState([]);
     const [correctGuesses, setCorrectGuesses] = useState([]);
@@ -29,6 +29,7 @@ function Game() {
         // Check guess and update game state...
         if (word.includes(letter)) {
           setCorrectGuesses([...correctGuesses, letter]);
+          // if all letters have been guessed, end match
         } else {
           setIncorrectGuesses([...incorrectGuesses, letter]);
         }
@@ -49,7 +50,26 @@ function Game() {
         setMatchesPlayed(matchesPlayed + 1);
         // if statement to run at the end of each match, if matchesPlayed = maxMatches, game ends. If matchesPlayed < maxMatches, new match starts 
         if(matchesPlayed === maxMatches) {
-            gameOver()
+            // TODO: call gameOver(). 
+                // -does the game over screen need its own component?
+                // *** VANILLA JS ***
+                // function gameOver() {
+                //     if (player1Score > player2Score){
+                //         // TODO: display message "(player1 username) wins the game!"
+                //         // alert(`${player1} wins the game!!`)
+                //         player1Wins++
+                //     } else if (player1Score < player2Score){
+                //         // TODO: display message "(player2 username) wins the game!"
+                //         // alert(`${player2} wins the game!!`)
+                //         player2Wins++
+                //     } else {
+                //         // TODO: display message "it's a tie!"
+                //         // alert('it's a tie!')
+                //         ties++
+                //     }
+                //     // TODO: write a function to update user stats in SQL database at the end of the game
+                //     // TODO: prompt host with play again button
+                // }
         } else {
             setWord("");
             setIncorrectGuesses([]);
