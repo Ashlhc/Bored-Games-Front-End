@@ -167,6 +167,10 @@ const ProfilePage = () => {
                 </div>
             )}
             <div>
+              <img id="edit-profile" src="./images/EditProfileBtn.png" alt="edit profile" />
+            </div>
+            
+            <div>
             <h1>Welcome {username}!</h1>
             </div>
             <div>
@@ -175,6 +179,9 @@ const ProfilePage = () => {
             <div>
 
                 <h3>{wins} AND {losses}</h3>
+            </div>
+            <div>
+
             </div>
             <div>
                 <button style={styles.hangmanButton} onClick={hangmanChange}>
