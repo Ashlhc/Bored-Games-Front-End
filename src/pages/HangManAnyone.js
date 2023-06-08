@@ -88,15 +88,15 @@ export default function HangManAnyone() {
         </div>
         <div className="row">
           <div className="col">
-          <button className="practiceButton" onClick={practiceChange}>
+            <button className="practiceButton" onClick={practiceChange}>
               <img id="practice-button" src="./images/PracticeBtn.png" alt="practice" />
             </button>
-            <button className="hostButton" onClick={hostChange}>
+            {/* <button className="hostButton" onClick={hostChange}>
               <img id="host-button" src="./images/HostBtn.png" alt="host" />
             </button>
             <button className="joinButton" onClick={joinChange}>
               <img id="join-button" src="./images/JoinBtn.png" alt="join" />
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
