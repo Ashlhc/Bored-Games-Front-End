@@ -1,4 +1,4 @@
-const BASEURL = 'https://stirring-semifreddo-28e858.netlify.app/';
+const BASEURL = 'https://uw-bootcamp-bored-games.herokuapp.com/';
 
 const API = {
   getTokenData: async (token) => {
