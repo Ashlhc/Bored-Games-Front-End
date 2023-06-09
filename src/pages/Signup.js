@@ -10,7 +10,6 @@ const SignUpForm = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate();
 
     const handleUsernameChange = (e) => {
@@ -25,13 +24,10 @@ const SignUpForm = () => {
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     };
-    const handleConfirmPasswordChange = (e) => {
-        setConfirmPassword(e.target.value);
-    };
 
     const handleSignUp = async (e) => {
         e.preventDefault();
-        if (!username || !firstName || !lastName || !password || !confirmPassword) {
+        if (!username || !firstName || !lastName || !password ) {
             alert('Must fill in all fields');
             return;
         }
@@ -40,14 +36,10 @@ const SignUpForm = () => {
             alert('Password must be at least 8 characters long.');
             return;
         }
-    
-        if (password !== confirmPassword) {
-            alert('Password and Confirm Password must match');
-            return;
-        }
+
 
         // Check if the username is already taken
-        const response = await fetch(`/api/users/user/${username}`, {
+        const response = await fetch(`/api/user/${username}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -63,7 +55,7 @@ const SignUpForm = () => {
     
         // If all checks pass, proceed with signup
         try {
-            const signupResponse = await fetch('/api/users/signup', {
+            const signupResponse = await fetch('/user/signup', {
                 method: 'POST',
                 body: JSON.stringify({
                     username: username,
@@ -184,12 +176,6 @@ const SignUpForm = () => {
                         </div>
                             <div>
                                 <input style={styles.input} id='signup-password' type="password" value={password} onChange={handlePasswordChange}></input>
-                            </div>
-                        <div>
-                            <label style={styles.label} htmlFor='confirm-password'>CONFIRM-PASSWORD</label>
-                        </div>
-                            <div>
-                                <input style={styles.input} id='confirm-password' type="password" value={confirmPassword} onChange={handleConfirmPasswordChange}></input>
                             </div>
                     </div>
                   </div>                    
