@@ -65,6 +65,7 @@ button {
   left: 50%;
   transform: translate(-40%, -530%);
 }
+
 .signinButton {
   position: relative;
   border: transparent;
@@ -92,22 +93,26 @@ button {
 }
 
 /* .hangman-container {
+
+
+.hangman-container {
   position: relative;
   top: 49%;
   left: var(--hangman-left);
   transform: translate(-250%, -49.5%) translate(300px, 100px);
   width: 16%;
   height: 74%;
+
 } */
 .HangMan {
   position: relative;
   height: 80%;
   transform: translate(-50%, 12%);
-}
 
 
 
 @media (max-width: 600px) {
+
   .hostButton {
       top: 40%;
       transform: translate(-27%, -600%);
@@ -158,5 +163,53 @@ button {
     height: 80%;
     transform: translate(-10%, 1%);
   }
+
+  .hostButton {
+      top: 40%;
+      transform: translate(-27%, -600%);
+      width: 60%;
+      height: 10%;
+  }
+
+  .joinButton {
+      top: 55%;
+      transform: translate(-33%, -610%);
+      width: 80%;
+      height: 10%;
+  }
+
+  .practiceButton {
+      top: 70%;
+      transform: translate(-30%, -800%);
+      width: 70%;
+      height: 10%;
+  }
+  .hangman {
+      top: 40%;
+      transform: translate(-65%, -23.5%);
+      width: 35%;
+      height: 70%;
+  }
+  .hangmananyone{
+      top: 40%;
+      transform: translate(10%, -555%);
+      width: 70%;
+      height: 15%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1280px) {
+  .hostButton {
+      top: 45%;
+  }
+
+  .joinButton {
+      top: 60%;
+  }
+
+  .practiceButton {
+      top: 75%;
+  }
+
 
 }

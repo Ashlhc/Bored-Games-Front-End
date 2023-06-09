@@ -1,3 +1,4 @@
+
 import Game from '../components/Game';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
@@ -168,3 +169,10 @@ export default function HangMan({ duration = 120000 }) {
     </div>
   );
 }
+=======
+import Game from "../components/Game";
+
+export default function HangMan(){
+    return <Game />
+}
+
