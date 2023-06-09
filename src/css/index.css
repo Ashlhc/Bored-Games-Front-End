@@ -26,7 +26,6 @@ button {
 }
 
 .container {
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,6 +66,35 @@ button {
   transform: translate(-40%, -530%);
 }
 
+.signinButton {
+  position: relative;
+  border: transparent;
+  width: var(--button-width);
+  height: var(--button-height);
+  top: 40%;
+  left: -50%;
+  transform: translate(-10%, 110%);
+  margin-bottom: 10%;
+
+}
+.signupButton {
+  position: relative;
+  border: transparent;
+  width: var(--button-width);
+  height: var(--button-height);
+  transform: translate(-60%, 120%);
+  
+}
+.letter-button { 
+  border: transparent;
+  background-color: transparent;
+  transform: translate(-100%, 25%);
+  
+}
+
+/* .hangman-container {
+
+
 .hangman-container {
   position: relative;
   top: 49%;
@@ -74,11 +102,17 @@ button {
   transform: translate(-250%, -49.5%) translate(300px, 100px);
   width: 16%;
   height: 74%;
-}
+
+} */
+.HangMan {
+  position: relative;
+  height: 80%;
+  transform: translate(-50%, 12%);
 
 
 
 @media (max-width: 600px) {
+
   .hostButton {
       top: 40%;
       transform: translate(-27%, -600%);
@@ -125,5 +159,57 @@ button {
   .practiceButton {
       top: 75%;
   }
+  .HangMan {
+    height: 80%;
+    transform: translate(-10%, 1%);
+  }
+
+  .hostButton {
+      top: 40%;
+      transform: translate(-27%, -600%);
+      width: 60%;
+      height: 10%;
+  }
+
+  .joinButton {
+      top: 55%;
+      transform: translate(-33%, -610%);
+      width: 80%;
+      height: 10%;
+  }
+
+  .practiceButton {
+      top: 70%;
+      transform: translate(-30%, -800%);
+      width: 70%;
+      height: 10%;
+  }
+  .hangman {
+      top: 40%;
+      transform: translate(-65%, -23.5%);
+      width: 35%;
+      height: 70%;
+  }
+  .hangmananyone{
+      top: 40%;
+      transform: translate(10%, -555%);
+      width: 70%;
+      height: 15%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1280px) {
+  .hostButton {
+      top: 45%;
+  }
+
+  .joinButton {
+      top: 60%;
+  }
+
+  .practiceButton {
+      top: 75%;
+  }
+
 
 }

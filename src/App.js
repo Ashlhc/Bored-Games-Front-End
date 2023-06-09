@@ -6,12 +6,8 @@ import Signup from "./pages/Signup.js";
 import Login from "./pages/Login.js";
 import SearchUser from "./pages/SearchUser.js";
 import HangMan from "./pages/HangMan.js";
-import HangManAnyone from "./pages/HangManAnyone.js";
 import Search from "./pages/Search.js";
 import HangMan from "./pages/HangMan.js";
-import Host from "./pages/Host.js";
-import Join from "./pages/Join.js";
-import Practice from "./pages/Practice.js";
 import Navbar from './components/Navbar.js';
 import API from "./utils/api.js";
 
@@ -50,16 +46,10 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/searchuser" element={<SearchUser />} />
-
-        {/* <Route path="/hangman" element={<HangMan />} /> */}
         <Route path="/hangmananyone" element={<HangManAnyone />} />
         <Route path="/hangman" element={<HangMan />} />
         <Route path="/search" element={<Search />} />
-        {/* <Route path="/host" element={<Host />} /> */}
-        {/* <Route path="/join" element={<Join />} /> */}
-        {/* <Route path="/practice" element={<Practice />} /> */}
-      </Routes>
-    </Router>
+  
   );
 }
 
