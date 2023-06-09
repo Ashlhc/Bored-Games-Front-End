@@ -85,10 +85,14 @@ button {
   transform: translate(-60%, 120%);
   
 }
+.row {
+  display: flex;
+  justify-content: center;
+}
 .letter-button { 
   border: transparent;
   background-color: transparent;
-  transform: translate(-100%, 25%);
+  
   
 }
 
