@@ -41,7 +41,7 @@ const ProfilePage = () => {
     navigate.push(`/search?q=${searchInput}`);
   };
   const hangmanChange = () => {
-    navigate('/hangmananyone');
+    navigate('/hangman');
   };
 
   const handleProfilePictureChange = (e) => {

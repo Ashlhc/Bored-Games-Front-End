@@ -7,9 +7,6 @@ import Login from "./pages/Login.js";
 import HangMan from "./pages/HangMan.js";
 import HangManAnyone from "./pages/HangManAnyone.js";
 import Search from "./pages/Search.js";
-import Host from "./pages/Host.js";
-import Join from "./pages/Join.js";
-import Practice from "./pages/Practice.js";
 import Navbar from './components/Navbar.js';
 
 function App() {

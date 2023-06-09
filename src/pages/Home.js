@@ -67,7 +67,7 @@ return (
 <div style={styles.backgroundImage} className="background-image">
 <div style={styles.container}>
     <div className='hangman-container'>
-    <img src="./images/Hangman2.png" alt='hangman' className='HangMan' />
+    <img src="./images/Hangman.png" alt='hangman' className='HangMan' />
     </div>
     <div className="row">
         <div className="col">
