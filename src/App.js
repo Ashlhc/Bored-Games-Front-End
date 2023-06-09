@@ -4,10 +4,10 @@ import Home from "./pages/Home.js";
 import Profile from "./pages/Profile.js";
 import Signup from "./pages/Signup.js";
 import Login from "./pages/Login.js";
+
 import HangMan from "./pages/HangMan.js"
 import Search from "./pages/Search.js";
 // import Navbar from './components/Navbar.js';
-
 function App() {
   const [username, setUsername] = useState("");
 
