@@ -1,4 +1,4 @@
-const BASEURL = 'http://10.0.0.48:3000';
+const BASEURL = 'https://stirring-semifreddo-28e858.netlify.app/';
 
 const API = {
   getTokenData: async (token) => {
