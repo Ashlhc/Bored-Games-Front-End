@@ -1,4 +1,4 @@
-const BASEURL = 'https://uw-bootcamp-bored-games.herokuapp.com/api/user';
+const BASEURL = 'https://uw-bootcamp-bored-games.herokuapp.com/';
 
 const API = {
   getTokenData: async (token) => {

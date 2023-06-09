@@ -112,8 +112,8 @@ button {
   position: relative;
   height: 80%;
   transform: translate(-50%, 12%);
-
 }
+
 
 @media (max-width: 600px) {
 
