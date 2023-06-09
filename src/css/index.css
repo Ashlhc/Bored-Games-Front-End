@@ -1,129 +1,129 @@
 * {
-    font-family: 'Press Start 2P', cursive;
-  }
-  
-  body {
-    display: block;
-    margin: 0px;
-  }
-  
-  .login-username,
-  .login-password {
-    border-radius: 25px;
-  }
-  
-  label {
-    font-size: x-large;
-  }
-  
-  input {
-    padding: 8px;
-    border-radius: 25px;
-  }
-  
-  button {
-    background-color: transparent;
-  }
-  
-  .container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
+  font-family: 'Press Start 2P', cursive;
+}
+
+body {
+  display: block;
+  margin: 0px;
+}
+
+.login-username,
+.login-password {
+  border-radius: 25px;
+}
+
+label {
+  font-size: x-large;
+}
+
+input {
+  padding: 8px;
+  border-radius: 25px;
+}
+
+button {
+  background-color: transparent;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.hostButton {
+  position: relative;
+  border: transparent;
+  margin-bottom: 8%;
+  width: var(--button-width);
+  height: var(--button-height);
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -575%);
+}
+
+.joinButton {
+  position: relative;
+  border: transparent;
+  width: 100%;
+  height: var(--button-height);
+  margin-bottom: 8%;
+  top: 65%;
+  left: 50%;
+  transform: translate(-41%, -610%)
+}
+
+.practiceButton {
+  position: relative;
+  border: transparent;
+  background-color: transparent;
+  width: var(--button-width);
+  height: var(--button-height);
+  top: 80%;
+  left: 50%;
+  transform: translate(-40%, -530%);
+}
+
+.hangman-container {
+  position: relative;
+  top: 49%;
+  left: var(--hangman-left);
+  transform: translate(-250%, -49.5%) translate(300px, 100px);
+  width: 16%;
+  height: 74%;
+}
+
+
+
+@media (max-width: 600px) {
   .hostButton {
-    position: relative;
-    border: transparent;
-    margin-bottom: 8%;
-    width: var(--button-width);
-    height: var(--button-height);
-    top: 50%;
-    left: 50%;
-    transform: translate(-40%, -575%);
+      top: 40%;
+      transform: translate(-27%, -600%);
+      width: 60%;
+      height: 10%;
   }
-  
+
   .joinButton {
-    position: relative;
-    border: transparent;
-    width: 100%;
-    height: var(--button-height);
-    margin-bottom: 8%;
-    top: 65%;
-    left: 50%;
-    transform: translate(-41%, -610%)
+      top: 55%;
+      transform: translate(-33%, -610%);
+      width: 80%;
+      height: 10%;
   }
-  
+
   .practiceButton {
-    position: relative;
-    border: transparent;
-    background-color: transparent;
-    width: var(--button-width);
-    height: var(--button-height);
-    top: 80%;
-    left: 50%;
-    transform: translate(-40%, -530%);
+      top: 70%;
+      transform: translate(-30%, -800%);
+      width: 70%;
+      height: 10%;
   }
-  
-  .hangman-container {
-    position: relative;
-    top: 49%;
-    left: var(--hangman-left);
-    transform: translate(-250%, -49.5%) translate(300px, 100px);
-    width: 16%;
-    height: 74%;
+  .hangman {
+      top: 40%;
+      transform: translate(-65%, -23.5%);
+      width: 35%;
+      height: 70%;
   }
-  
+  .hangmananyone{
+      top: 40%;
+      transform: translate(10%, -555%);
+      width: 70%;
+      height: 15%;
+  }
+}
 
-
-  @media (max-width: 600px) {
-    .hostButton {
-        top: 40%;
-        transform: translate(-27%, -600%);
-        width: 60%;
-        height: 10%;
-    }
-
-    .joinButton {
-        top: 55%;
-        transform: translate(-33%, -610%);
-        width: 80%;
-        height: 10%;
-    }
-
-    .practiceButton {
-        top: 70%;
-        transform: translate(-30%, -800%);
-        width: 70%;
-        height: 10%;
-    }
-    .hangman {
-        top: 40%;
-        transform: translate(-65%, -23.5%);
-        width: 35%;
-        height: 70%;
-    }
-    .hangmananyone{
-        top: 40%;
-        transform: translate(10%, -555%);
-        width: 70%;
-        height: 15%;
-    }
+@media (min-width: 601px) and (max-width: 1280px) {
+  .hostButton {
+      top: 45%;
   }
 
-  @media (min-width: 601px) and (max-width: 1280px) {
-    .hostButton {
-        top: 45%;
-    }
-
-    .joinButton {
-        top: 60%;
-    }
-
-    .practiceButton {
-        top: 75%;
-    }
-
+  .joinButton {
+      top: 60%;
   }
+
+  .practiceButton {
+      top: 75%;
+  }
+
+}
