@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../utils/api';
 import '../css/index.css';
-import backgroundImgDesktop from '../images/profilebkgimg.png';
-import backgroundImgMobile from '../images/mobilepfbkg.png';
-import backgroundImgTablet from '../images/tabletpfbkg.png';
+import backgroundImgDesktop from '../assets/profilebkgimg.png';
+import backgroundImgMobile from '../assets/mobilepfbkg.png';
+import backgroundImgTablet from '../assets/tabletpfbkg.png';
 
 const ProfilePage = () => {
   const [username, setUsername] = useState('');
@@ -174,7 +174,8 @@ const ProfilePage = () => {
             <h1>Welcome {username}!</h1>
             </div>
             <div>
-                <h2>{following} Following List</h2>
+                <h2>{following} Gallows Gang</h2>
+                
             </div>
             <div>
 

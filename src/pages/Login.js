@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import API from '../utils/api';
-import backgroundImgDesktop from '../images/backgroundimg.png';
-import backgroundImgMobile from '../images/mobilebkgimg.png';
-import backgroundImgTablet from '../images/tabletbkgimg.png';
+import backgroundImgDesktop from '../assets/backgroundimg.png';
+import backgroundImgMobile from '../assets/mobilebkgimg.png';
+import backgroundImgTablet from '../assets/tabletbkgimg.png';
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');

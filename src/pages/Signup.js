@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/index.css';
-import backgroundImgDesktop from '../images/backgroundimg.png';
-import backgroundImgMobile from '../images/mobilebkgimg.png';
-import backgroundImgTablet from '../images/tabletbkgimg.png';
+import backgroundImgDesktop from '../assets/backgroundimg.png';
+import backgroundImgMobile from '../assets/mobilebkgimg.png';
+import backgroundImgTablet from '../assets/tabletbkgimg.png';
 
 const SignUpForm = () => {
     const [username, setUsername] = useState('');
