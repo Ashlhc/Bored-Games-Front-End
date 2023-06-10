@@ -5,6 +5,10 @@ export default function useGameState() {
   const [word, setWord] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState([]);
   const [incorrectGuesses, setIncorrectGuesses] = useState([]);
+  // start, playing, win, lose
+  const [state, setState] = useState('start') 
+  const [wins, setWins] = useState(0)
+  const [losses, setLosses] = useState(0)
 
   const words = [
     "apple",
@@ -132,7 +136,7 @@ export default function useGameState() {
     "zigzag",
   ];
   const startGame = useCallback(() => {
-    // reset word
+    setState('playing')
 
     // pick a word from a big array (ask chatGPT)
     // setWord(["bird", "apple", "pie"][]);
@@ -144,9 +148,18 @@ export default function useGameState() {
     setCorrectGuesses([]);
   }, [words]);
 
+  function loseGame() {
+    //update database here
+    setState('lose')
+    setLosses(losses+1)
+    console.log('Game Over');
+  }
 
-  function endGame() {
-      // set parameters for when a game should end
+  function winGame() {
+    //update database here
+    setWins(wins+1)
+    setState('win')
+    console.log('You win!');
   }
 
   return {
@@ -156,9 +169,12 @@ export default function useGameState() {
     setCorrectGuesses,
     setIncorrectGuesses,
     startGame,
-    endGame,
-    matchesPlayed,
-    setMatchesPlayed,
-    updateMatchesPlayed
+    loseGame,
+    winGame,
+    state,
+    wins,
+    losses,
+    setLosses,
+    setWins
   };
 }

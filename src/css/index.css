@@ -217,3 +217,72 @@ button {
 
 
 }
+
+.hangman-image {
+  position: absolute;
+}
+
+.letters-container {
+  display: flex;
+  max-width: 400px;
+  gap: 15px;
+  flex-wrap: wrap;
+  height: fit-content;
+}
+
+.selectable-letter-container {
+  rotate: 45deg;
+  display: flex;
+  background-color: antiquewhite;
+  border: 1px solid black;
+  padding: 5px;
+  cursor: pointer;
+  font-size: x-large;
+}
+
+
+.head-image {
+  left: 40px;
+  top: 40px;
+}
+
+.rope-image {
+  top: -230px;
+  right: 80px;
+  width: 150px;
+}
+
+.accessory-image {
+  top: -80px;
+  right: 22px
+}
+
+.chest-image {
+  left: -5px;
+  top: 90px;
+}
+
+.hair-image {
+  top: -47px;
+  right: 17px
+}
+
+.leftarm-image {
+  right: 0px;
+  top: 142px;
+}
+
+.rightarm-image {
+  left: 10px;
+  top: 140px;
+}
+
+.leftleg-image {
+  right: 40px;
+  top: 200px;
+}
+
+.rightleg-image {
+  left: 60px;
+  top: 200px;
+}
