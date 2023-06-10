@@ -189,31 +189,27 @@ export default function HangMan({ duration = 120000 }) {
       ];
 
   return (
-<div style={styles.backgroundImage} className="background-image">
-  <div style={styles.container}>
-    {rows.map((row, rowIndex) => (
-      <div key={rowIndex} className="row">
-          {alphabets
-            .filter(
-              (letterObj) =>
-                letterObj.letter >= row.start && letterObj.letter <= row.end
-            )
-            .map((letterObj) => (
-              <button
-                key={letterObj.letter}
-                onClick={() => handleGuess(letterObj.letter)}
-                className="letter-button"
-              >
-                <img src={letterObj.image} alt={letterObj.letter} />
-              </button>
-            ))}
-        </div>
-    ))}
-  </div>
-</div>
-  )}
-
-// export default function HangMan(){
-//     return <Game />
-// }
-
+    <div style={styles.backgroundImage} className="background-image">
+      <div style={styles.container}>
+        {rows.map((row, rowIndex) => (
+          <div key={rowIndex} className="row">
+              {alphabets
+                .filter(
+                  (letterObj) =>
+                    letterObj.letter >= row.start && letterObj.letter <= row.end
+                )
+                .map((letterObj) => (
+                  <button
+                    key={letterObj.letter}
+                    onClick={() => handleGuess(letterObj.letter)}
+                    className="letter-button"
+                  >
+                    <img src={letterObj.image} alt={letterObj.letter} />
+                  </button>
+                ))}
+            </div>
+        ))}
+      </div>
+    </div>
+  );
+}
