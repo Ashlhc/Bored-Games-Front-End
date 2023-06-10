@@ -213,9 +213,7 @@ export default function HangMan({ duration = 120000 }) {
 </div>
   )}
 
-import Game from "../components/Game";
-
-export default function HangMan(){
-    return <Game />
-}
+// export default function HangMan(){
+//     return <Game />
+// }
 
