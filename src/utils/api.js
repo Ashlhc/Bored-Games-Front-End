@@ -1,16 +1,6 @@
-const BASEURL = 'https://uw-bootcamp-bored-games.herokuapp.com/';
+const BASEURL = 'https://uw-bootcamp-bored-games.herokuapp.com/api';
 
 const API = {
-  getTokenData: async (token) => {
-    const response = await fetch(`${BASEURL}/user/gettokendata`, {
-      method: 'POST',
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    });
-    return response.json();
-  },
-
   login: async (username, password) => {
     const response = await fetch(`${BASEURL}/user/login`, {
       method: 'POST',
@@ -25,14 +15,14 @@ const API = {
     return response.json();
   },
 
-  createUser: async (username, firstName, lastName, password) => {
+  signup: async (username, firstName, lastName, password) => {
     const response = await fetch(`${BASEURL}/user/signup`, {
       method: 'POST',
       body: JSON.stringify({
-        username: username,
-        firstName: firstName,
-        lastName: lastName,
-        password: password,
+        username,
+        firstName,
+        lastName,
+        password,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -50,21 +40,7 @@ const API = {
   },
 
   getUsers: async () => {
-    const response = await fetch(`${BASEURL}/user`, {
-      method: 'GET',
-
-    });
-    return response.json();
-  },
-
-  addProfilePicture: async (username, photoData) => {
-    const formData = new FormData();
-    formData.append('photo', photoData);
-
-    const response = await fetch(`${BASEURL}/api/users/${username}/photos`, {
-      method: 'POST',
-      body: formData,
-    });
+    const response = await fetch(`${BASEURL}/user`);
     return response.json();
   },
 
@@ -73,7 +49,7 @@ const API = {
  followUser: async (id) => {
     const response = await fetch(`${BASEURL}/user/follow/${id}`, {
       method: 'POST',
-      body: JSON.stringify({ ok: true }),
+      body: '{}',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('token')}`,
