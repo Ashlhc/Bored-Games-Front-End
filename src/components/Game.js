@@ -6,6 +6,7 @@ import Letter from "../components/Letter";
 import BlankLetter from "./BlankLetter";
 import useGameState from "../hooks/useGameState";
 import usePlayerScore from "../hooks/usePlayerScore";
+import useTimerContext from "../hooks/useTimerContext";
 
 function Game() {
   // State initialization
@@ -14,11 +15,19 @@ function Game() {
   const { word, correctGuesses, incorrectGuesses, setCorrectGuesses, setIncorrectGuesses, startGame, endGame } = useGameState()
   const { score, updateScore, updateTies, updateWins } = usePlayerScore()
   const maxMatches = 3;
+  
+
+  // const [userState, usersDispatch ] = React.useReducer(tableReducer, []);
+
+  // const providerState = {
+  //   userState,
+  //   usersDispatch
+  // }
 
   startGame()
 
   if (Timer === 0) {
-    updateMatchesPlayed()
+    handleMatchEnd()
   }
 
   const handleGuess = (letter) => {
@@ -39,7 +48,9 @@ function Game() {
       computer.updateScore();
     }
     // Update matches played
-    setMatchesPlayed(matchesPlayed + 1);
+    updateMatchesPlayed()
+    
+
     // if statement to run at the end of each match, if matchesPlayed = maxMatches, game ends. If matchesPlayed < maxMatches, new match starts
     if (matchesPlayed >= maxMatches) {
       endGame()
@@ -58,22 +69,27 @@ function Game() {
   };
 
   return (
-    <div>
-      <Timer />
-      <Player player={player1} />
-      <Player player={computer} />
-      {/* <Hangman incorrectGuesses={incorrectGuesses.length} /> */}
-      <Scoreboard player1={player1} computer={computer} />
-      <div>
-        {word && word.split("").map((letter, key) => {
-          if (correctGuesses.includes(letter)) {
-            return <Letter letter={letter} key={key}/>;
-          } else {
-            return <BlankLetter key={key} />;
-          }
-        })}
-      </div>
-    </div>
+
+    <CustomContext.Provider value={providerState} >
+      <ChildComponent /> 
+    </CustomContext.Provider>
+
+    // <div>
+    //   <Timer />
+    //   <Player player={player1} />
+    //   <Player player={computer} />
+    //   {/* <Hangman incorrectGuesses={incorrectGuesses.length} /> */}
+    //   <Scoreboard player1={player1} computer={computer} />
+    //   <div>
+    //     {word && word.split("").map((letter, key) => {
+    //       if (correctGuesses.includes(letter)) {
+    //         return <Letter letter={letter} key={key}/>;
+    //       } else {
+    //         return <BlankLetter key={key} />;
+    //       }
+    //     })}
+    //   </div>
+    // </div>
   );
 }
 

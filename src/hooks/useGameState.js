@@ -141,13 +141,12 @@ export default function useGameState() {
     setCorrectGuesses([]);
   }
 
-function updateMatchesPlayed() {
-    setMatchesPlayed(matchesPlayed + 1)
-}
+  function updateMatchesPlayed() {
+      setMatchesPlayed(matchesPlayed + 1)
+  }
 
   function endGame() {
-    
-    
+      // set parameters for when a game should end
   }
 
   return {

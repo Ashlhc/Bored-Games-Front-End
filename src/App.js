@@ -25,7 +25,7 @@ function App() {
         <Route path="/search" element={<Search />} />
         {/* <Route path="/host" element={<Host />} /> */}
         {/* <Route path="/join" element={<Join />} /> */}
-        {/* <Route path="/practice" element={<Practice />} /> */}
+        <Route path="/practice" element={<Game />} />
     </Routes>
     </Router>
   );
