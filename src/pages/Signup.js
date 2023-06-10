@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/index.css';
-import backgroundImgDesktop from '../images/backgroundimg.png';
-import backgroundImgMobile from '../images/mobilebkgimg.png';
-import backgroundImgTablet from '../images/tabletbkgimg.png';
+import backgroundImgDesktop from '../assets/backgroundimg.png';
+import backgroundImgMobile from '../assets/mobilebkgimg.png';
+import backgroundImgTablet from '../assets/tabletbkgimg.png';
+
+import API from '../utils/api';
 
 const SignUpForm = () => {
+    const navigate = useNavigate();
+    
     const [username, setUsername] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const navigate = useNavigate();
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -25,13 +27,10 @@ const SignUpForm = () => {
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     };
-    const handleConfirmPasswordChange = (e) => {
-        setConfirmPassword(e.target.value);
-    };
 
     const handleSignUp = async (e) => {
         e.preventDefault();
-        if (!username || !firstName || !lastName || !password || !confirmPassword) {
+        if (!username || !firstName || !lastName || !password ) {
             alert('Must fill in all fields');
             return;
         }
@@ -41,50 +40,12 @@ const SignUpForm = () => {
             return;
         }
     
-        if (password !== confirmPassword) {
-            alert('Password and Confirm Password must match');
-            return;
-        }
-
-        // Check if the username is already taken
-        const response = await fetch(`/api/users/user/${username}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-    
-        const json = await response.json();
-    
-        if (json !== null) {
-            alert('Username already taken!');
-            return;
-        }
-    
         // If all checks pass, proceed with signup
         try {
-            const signupResponse = await fetch('/api/users/signup', {
-                method: 'POST',
-                body: JSON.stringify({
-                    username: username,
-                    firstName: firstName,
-                    lastName: lastName,
-                    password: password,
-                }),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-    
-            if (signupResponse.ok) {
-
-                navigate('/profile');
-
-            } else {
-                // Signup failed, display error message or perform any other necessary actions
-                alert('Signup failed. Please try again.');
-                // Add your code here to handle the signup failure
-            }
+            const res = await API.signup(username, firstName, lastName, password);
+            localStorage.setItem("token", res.token);
+            
+            navigate('/profile');
         } catch (error) {
             // Error occurred during signup request, display error message or perform any other necessary actions
             console.error('Signup error:', error);
@@ -184,12 +145,6 @@ const SignUpForm = () => {
                         </div>
                             <div>
                                 <input style={styles.input} id='signup-password' type="password" value={password} onChange={handlePasswordChange}></input>
-                            </div>
-                        <div>
-                            <label style={styles.label} htmlFor='confirm-password'>CONFIRM-PASSWORD</label>
-                        </div>
-                            <div>
-                                <input style={styles.input} id='confirm-password' type="password" value={confirmPassword} onChange={handleConfirmPasswordChange}></input>
                             </div>
                     </div>
                   </div>                    

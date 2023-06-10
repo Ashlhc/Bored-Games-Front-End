@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import '../css/index.css';
-import backgroundImgDesktop from '../images/backgroundimg.png';
-import backgroundImgMobile from '../images/mobilebkgimg.png';
-import backgroundImgTablet from '../images/tabletbkgimg.png';
+import backgroundImgDesktop from '../assets/backgroundimg.png';
+import backgroundImgMobile from '../assets/mobilebkgimg.png';
+import backgroundImgTablet from '../assets/tabletbkgimg.png';
 
 export default function Home() {
     let navigate = useNavigate();
@@ -48,7 +48,7 @@ if (windowWidth >= 1920) {
 
 const styles = {
     container: {
-        display: 'flex',
+        margin: '0 auto',
         alignItems: 'center',
         justifyContent: 'center',
         height: '100vh',
@@ -58,6 +58,7 @@ const styles = {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
         height: '100vh',
     },
    
@@ -66,9 +67,7 @@ const styles = {
 return (
 <div style={styles.backgroundImage} className="background-image">
 <div style={styles.container}>
-    <div className='hangman-container'>
-    <img src="./images/Hangman2.png" alt='hangman' className='HangMan' />
-    </div>
+    <img src="./images/Hangman.png" alt='hangman' className='HangMan' />
     <div className="row">
         <div className="col">
                 <div>

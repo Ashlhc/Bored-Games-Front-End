@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import API from '../utils/api';
-import backgroundImgDesktop from '../images/backgroundimg.png';
-import backgroundImgMobile from '../images/mobilebkgimg.png';
-import backgroundImgTablet from '../images/tabletbkgimg.png';
+import backgroundImgDesktop from '../assets/backgroundimg.png';
+import backgroundImgMobile from '../assets/mobilebkgimg.png';
+import backgroundImgTablet from '../assets/tabletbkgimg.png';
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -16,19 +16,19 @@ const LoginForm = () => {
     };
     const loginChange = async (e) => {
         e.preventDefault();
-    
 
-    try {
-      const response = await API.login(username, password);
-      const token = response.token;
+      try {
+        const response = await API.login(username, password);
+        const token = response.token;
 
-      localStorage.setItem('token', token);
+        localStorage.setItem('token', token);
 
-      window.location.href = '/home';
-    } catch(error) {
-      console.error('Login error:', error)
-    }
+        window.location.href = '/home';
+      } catch(error) {
+        console.error('Login error:', error)
+      }
   };
+  
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -56,43 +56,44 @@ const LoginForm = () => {
   } else {
       backgroundImage = backgroundImgMobile;
   }
-    const styles = {
-        container: {
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
-        },
-        label: {
-          margin: '0 -35%',
-          display: 'flex',
-          alignItems:'center',
-          justifyContent: 'flex-end',
-          width: '100px',
-          color: 'white',
-        },
-        input: {
-          border: 'solid black 5px',
-          borderRadius: '25px',
-          margin: '10px 0 20px',
-          padding: '0',
-          flex: '1',
-        },
-        button: {
-          border: 'transparent',
-          position: 'relative',
-        },
-        backgroundImage: {
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          height: '100vh',
-        },
-      };
 
-return (
+  const styles = {
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+    },
+    label: {
+      margin: '0 -35%',
+      display: 'flex',
+      alignItems:'center',
+      justifyContent: 'flex-end',
+      width: '100px',
+      color: 'white',
+    },
+    input: {
+      border: 'solid black 5px',
+      borderRadius: '25px',
+      margin: '10px 0 20px',
+      padding: '0',
+      flex: '1',
+    },
+    button: {
+      border: 'transparent',
+      position: 'relative',
+    },
+    backgroundImage: {
+      backgroundImage: `url(${backgroundImage})`,
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      height: '100vh',
+    },
+  };
+
+  return (
     <div style={styles.backgroundImage} className="background-image">
       <div style={styles.container}>
         <div id='Login'>
@@ -116,4 +117,5 @@ return (
     </div>
   );
 }
+
 export default LoginForm;

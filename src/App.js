@@ -4,10 +4,10 @@ import Home from "./pages/Home.js";
 import Profile from "./pages/Profile.js";
 import Signup from "./pages/Signup.js";
 import Login from "./pages/Login.js";
-import HangManAnyone from "./pages/HangManAnyone.js";
-import Search from "./pages/Search.js";
-import HangMan from "./pages/HangMan.js";
 
+import HangMan from "./pages/HangMan.js"
+import Search from "./pages/Search.js";
+// import Navbar from './components/Navbar.js';
 function App() {
   const [username, setUsername] = useState("");
 
@@ -19,13 +19,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/hangman" element={<HangMan />} /> */}
-        <Route path="/hangmananyone" element={<HangManAnyone />} />
         <Route path="/hangman" element={<HangMan />} />
         <Route path="/search" element={<Search />} />
-        {/* <Route path="/host" element={<Host />} /> */}
-        {/* <Route path="/join" element={<Join />} /> */}
-        <Route path="/practice" element={<Game />} />
     </Routes>
     </Router>
   );
