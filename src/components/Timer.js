@@ -1,11 +1,9 @@
 import React, { useState, useReducer, useRef, useEffect } from "react";
-import useGameState from "../hooks/useGameState";
 
-const Timer = () => {
-  const { endGame } = useGameState();
+const Timer = ({onLoseGame}) => {
   const [state, dispatch] = useReducer(reducer, {
     isRunning: false,
-    time: 0,
+    time: 30,
   });
   const idRef = useRef(0);
 
@@ -22,23 +20,18 @@ const Timer = () => {
 
   useEffect(() => {
     if (state.time < 1) {
-      endGame();
+      onLoseGame();
       dispatch({ type: "stop" });
     }
   }, [state.time]);
 
+  useEffect(() => {
+    dispatch({type: 'start'})
+  },[])
+
   return (
-    <div>
-      {!state.isRunning && (
-        <div>
-          <button onClick={() => dispatch({ type: "start" })}>
-            Start Game
-          </button>
-        </div>
-      )}
-      {`time remaining: ${state.time} second${
-        state.time === 1 ? "s" : ""
-      } remaining`}
+    <div style={{zIndex: '10'}}>
+      {`time remaining: ${state.time}`}
     </div>
   );
 };
@@ -52,7 +45,7 @@ function reducer(state, action) {
     case "stop":
       return { ...state, isRunning: false };
     case "reset":
-      return { isRunning: false, time: 30 };
+      return { isRunning: false, time: 3 };
     case "tick":
       return { ...state, time: state.time - 1 };
     default:

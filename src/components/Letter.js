@@ -9,7 +9,7 @@ const WordForm = ({ setWord }) => {
             setWord(inputWord);
             setInputWord('');
         } else {
-            // TODO: display alert saying the input is invalid
+            alert('Please enter a word between 1 and 20 characters long.');
         }
     }
 
