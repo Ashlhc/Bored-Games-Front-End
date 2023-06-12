@@ -5,15 +5,12 @@ import backgroundImgDesktop from '../assets/backgroundimg.png';
 import backgroundImgMobile from '../assets/mobilebkgimg.png';
 import backgroundImgTablet from '../assets/tabletbkgimg.png';
 
-import API from '../utils/api';
-
 const SignUpForm = () => {
-    const navigate = useNavigate();
-    
     const [username, setUsername] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -39,13 +36,47 @@ const SignUpForm = () => {
             alert('Password must be at least 8 characters long.');
             return;
         }
+
+
+        // Check if the username is already taken
+        const response = await fetch(`/api/user/${username}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    
+        const json = await response.json();
+    
+        if (json !== null) {
+            alert('Username already taken!');
+            return;
+        }
     
         // If all checks pass, proceed with signup
         try {
-            const res = await API.signup(username, firstName, lastName, password);
-            localStorage.setItem("token", res.token);
-            
-            navigate('/profile');
+            const signupResponse = await fetch('/user/signup', {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: username,
+                    firstName: firstName,
+                    lastName: lastName,
+                    password: password,
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+    
+            if (signupResponse.ok) {
+
+                navigate('/profile');
+
+            } else {
+                // Signup failed, display error message or perform any other necessary actions
+                alert('Signup failed. Please try again.');
+                // Add your code here to handle the signup failure
+            }
         } catch (error) {
             // Error occurred during signup request, display error message or perform any other necessary actions
             console.error('Signup error:', error);
@@ -122,33 +153,33 @@ const SignUpForm = () => {
                 <div style={styles.container}>
                     <div className="row">
                     <div className="col">
-                        <div>
-                          <label htmlFor='signup-username' style={styles.label}>USERNAME</label>
-                        </div>
+                       
+                          <label className='signup-username' htmlFor='signup-username' style={styles.label}>USERNAME</label>
+                      
                         <div>
                             <input style={styles.input} id="signup-username" type="text" value={username} onChange={handleUsernameChange}></input>
                         </div>
-                        <div>
-                            <label style={styles.label} htmlFor='first-name'>FIRST-NAME</label>
-                        </div>
+                       
+                            <label className='signup-first-name' style={styles.label} htmlFor='first-name'>FIRST-NAME</label>
+                      
                         <div>
                             <input style={styles.input} id="first-name" type="text" value={firstName} onChange={handleFirstNameChange}></input>
                         </div>
-                        <div>
-                            <label style={styles.label} htmlFor='last-name'>LAST-NAME</label>
-                        </div>
+                       
+                            <label className='signup-last-name' style={styles.label} htmlFor='last-name'>LAST-NAME</label>
+                       
                             <div>
                                 <input style={styles.input} id="last-name" type="text" value={lastName} onChange={handleLastNameChange}></input>
                             </div>
-                        <div>
-                            <label style={styles.label} htmlFor='signup-password'>PASSWORD</label>
-                        </div>
+                      
+                            <label className='signup-password' style={styles.label} htmlFor='signup-password'>PASSWORD</label>
+                       
                             <div>
                                 <input style={styles.input} id='signup-password' type="password" value={password} onChange={handlePasswordChange}></input>
                             </div>
                     </div>
                   </div>                    
-                    <button style={styles.button} type="submit" onClick={handleSignUp}>
+                    <button className="signup-signupButton"style={styles.button} type="submit" onClick={handleSignUp}>
                         <img id="signup-button" src="./images/SignupBtn.png" alt="signup" />
                     </button>
               </div>

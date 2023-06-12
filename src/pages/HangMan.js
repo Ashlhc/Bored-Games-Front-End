@@ -86,7 +86,7 @@ export default function HangMan({ duration = 120000 }) {
       setIncorrectGuesses([...incorrectGuesses, letter]);
 
       // check if we lose
-      if (incorrectGuesses.length + 1 >= 10) {
+      if (incorrectGuesses.length + 1 >= 9) {
         loseGame()
       }
     }
@@ -101,7 +101,7 @@ export default function HangMan({ duration = 120000 }) {
 
   };
 
-  const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
   return (
     <div style={styles.backgroundImage} className="background-image">
@@ -178,11 +178,10 @@ export default function HangMan({ duration = 120000 }) {
                     position: 'relative',
                     width: '300px',
                     height: '400px',
+                    transform: 'translateX(140%) translateY(40%)'
+                    
                   }}>
-                    {
-                      incorrectGuesses.length > 8 &&
-                      <img className='hangman-image rope-image' src={Rope_image} alt={'Rope_image'} />
-                    }
+                  <img className='rope' src={Rope_image} />
                     {
                       incorrectGuesses.length > 0 &&
                       <img className='hangman-image head-image' src={Head_image} alt={'Head_image'} />
@@ -220,8 +219,11 @@ export default function HangMan({ duration = 120000 }) {
                   {/* Compelted word */}
                   <div style={{
                     display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
                     gap: '2px',
-                    fontSize: '30px'
+                    fontSize: '30px',
+                    transform: 'translateX(175%) translateY(425%)',
                   }}>
                     {
                       word.split('').map((char, key) => {
@@ -247,6 +249,7 @@ export default function HangMan({ duration = 120000 }) {
 
                   {/* show selectable leters */}
                   <div className='letters-container'>
+
                     {
                       alphabet.map((char, key) => {
                         let backgroundColor = 'none'
@@ -265,8 +268,7 @@ export default function HangMan({ duration = 120000 }) {
                             onClick={() => {
                               handleGuess(char)
                             }}
-                            className={`selectable-letter-container`}
-                            style={{ backgroundColor }}
+                            className={`selectable-letter-container ${backgroundColor}`}
                           >
                             <div style={{
                               rotate: '-45deg'

@@ -67,16 +67,16 @@ const styles = {
 return (
 <div style={styles.backgroundImage} className="background-image">
 <div style={styles.container}>
-    <img src="./images/Hangman.png" alt='hangman' className='HangMan' />
+    <img src="./images/Hangman.png" alt='hangman' className='home-HangMan' />
     <div className="row">
         <div className="col">
                 <div>
-                    <button className='signinButton' onClick={loginChange}>
+                    <button className='home-signinButton' onClick={loginChange}>
                         <img id="login-button" src="../images/SigninBtn.png" alt="login" />
                         </button> 
                 </div>
                 <div>
-                    <button className='signupButton' onClick={signupChange}>
+                    <button className='home-signupButton' onClick={signupChange}>
                         <img id="signup-button" src="./images/SignupBtn.png" alt="signup" />
                         </button>
                 </div>
