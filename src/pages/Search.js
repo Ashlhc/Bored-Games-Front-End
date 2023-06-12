@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import API from '../utils/api';
 
-const Search = ({ performSearch }) => {
+const Search = () => {
 const [query, setQuery] = useState('');
 const [results, setResults] = useState([]);
 
 const handleSearch = async (e) => {
     e.preventDefault();
-
     try {
-        const searchResults = await performSearch(query);
+        const searchResults = await API.searchUsers(query);
         setResults(searchResults);
     } catch (error) {
         console.log('Error performing search:', error);
@@ -26,7 +26,7 @@ return (
         {results.length > 0 ? (
             <ul>
                 {results.map((result, index) => (
-                    <li key={index}>{result}</li>
+                    <li key={index}>{result.username}</li>
                 ))}
             </ul>
         ) : (
