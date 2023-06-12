@@ -62,7 +62,7 @@ const API = {
   },
 
   deleteFollow: async (id) => {
-    const response = await fetch(`${BASEURL}/user/follow/${id}`, {
+    const response = await fetch(`${BASEURL}/user/unfollow/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,

@@ -143,7 +143,7 @@ const ProfilePage = () => {
 
             {avatar && (
                 <div style={styles.polaroid}>
-                <img src={avatar} alt='avatar' />
+                <img className='avatar' src={avatar} alt='avatar' />
                 </div>
             )}
             {!avatar && (
@@ -151,7 +151,6 @@ const ProfilePage = () => {
                     <p>No Avatar Selected</p>
                 </div>
             )}
-            
             <div className="welcome">
             <h1>Welcome {username}!</h1>
             </div>
