@@ -33,14 +33,17 @@ const API = {
 
 
   getSingleUser: async (username) => {
-    const response = await fetch(`${BASEURL}/user/search/${username}`, {
-      method: 'GET',
-    });
+    const response = await fetch(`${BASEURL}/user/${username}`);
     return response.json();
   },
 
   getUsers: async () => {
     const response = await fetch(`${BASEURL}/user`);
+    return response.json();
+  },
+  
+  searchUsers: async (partialUsername) => {
+    const response = await fetch(`${BASEURL}/user/search/${partialUsername}`);
     return response.json();
   },
 
