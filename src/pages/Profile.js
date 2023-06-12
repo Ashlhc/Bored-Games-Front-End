@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../utils/api';
 import '../css/index.css';
-import backgroundImgDesktop from '../assets/profilebkgimg.png';
+import backgroundImgDesktop from '../assets/backgroundimg.png';
 import backgroundImgMobile from '../assets/mobilepfbkg.png';
 import backgroundImgTablet from '../assets/tabletpfbkg.png';
 
@@ -66,7 +66,7 @@ const ProfilePage = () => {
   };
 
   const handleSearch = () => {
-    navigate.push(`/search?q=${searchInput}`);
+    navigate(`/search?q=${searchInput}`);
   };
 
   const hangmanChange = () => {
@@ -135,6 +135,10 @@ const ProfilePage = () => {
 
       return (
         <div style={styles.backgroundImage} className='background-image'>
+          <div className="search">
+            <input type='text' placeholder='find users...' />
+            <button onClick={handleSearch}>Search</button>
+          </div>
             <div style={styles.container}>
 
             {avatar && (
