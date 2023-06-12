@@ -72,6 +72,13 @@ const SignUpForm = () => {
 
                 navigate('/profile');
 
+                // save user state here
+                const token = response.token;
+                const user = response.user;
+
+                localStorage.setItem('token', token);
+                localStorage.setItem('user', user);
+``
             } else {
                 // Signup failed, display error message or perform any other necessary actions
                 alert('Signup failed. Please try again.');
