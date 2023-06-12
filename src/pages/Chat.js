@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useId } from "react";
 import io from "socket.io-client";
+import { useNavigate } from 'react-router-dom';
 
 const socket = io.connect("http://localhost:9000");
 
@@ -9,7 +10,11 @@ function Chat() {
   const [username, setUsername] = useState(
     `User - ${Math.floor(Math.random() * 1000)}`
   );
+  const navigate = useNavigate();
 
+  const handlePageChange = () => {
+    navigate('/profile');
+  }
   const sendMessage = () => {
     socket.emit("send_message", username + " " + message);
   };
@@ -27,6 +32,7 @@ function Chat() {
   return (
     <div className="chat">
       <div className="chat-box">
+        <button onClick={handlePageChange}>Back to profile</button>
         <h1>Chat</h1>
         <div className="messages">
           {messages.map((m, index) => {
