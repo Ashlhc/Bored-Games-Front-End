@@ -23,7 +23,7 @@ const LoginForm = () => {
 
         localStorage.setItem('token', token);
 
-        window.location.href = '/home';
+        window.location.href = '/profile';
       } catch(error) {
         console.error('Login error:', error)
       }
