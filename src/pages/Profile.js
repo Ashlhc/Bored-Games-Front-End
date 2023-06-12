@@ -136,8 +136,8 @@ const ProfilePage = () => {
       return (
         <div style={styles.backgroundImage} className='background-image'>
           <div className="search">
-            <input type='text' placeholder='find users...' />
-            <button onClick={handleSearch}>Search</button>
+            {/* <input type='text' placeholder='find users...' /> */}
+            <button onClick={handleSearch}>Find Friends</button>
           </div>
             <div style={styles.container}>
 
