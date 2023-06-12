@@ -65,25 +65,6 @@ const LoginForm = () => {
       alignItems: 'center',
       height: '100vh',
     },
-    label: {
-      margin: '0 -35%',
-      display: 'flex',
-      alignItems:'center',
-      justifyContent: 'flex-end',
-      width: '100px',
-      color: 'white',
-    },
-    input: {
-      border: 'solid black 5px',
-      borderRadius: '25px',
-      margin: '10px 0 20px',
-      padding: '0',
-      flex: '1',
-    },
-    button: {
-      border: 'transparent',
-      position: 'relative',
-    },
     backgroundImage: {
       backgroundImage: `url(${backgroundImage})`,
       backgroundPosition: 'center',
@@ -97,23 +78,26 @@ const LoginForm = () => {
     <div style={styles.backgroundImage} className="background-image">
       <div style={styles.container}>
         <div id='Login'>
-          <div style={styles.label}>
-            <label htmlFor='login-username'>USERNAME</label>
-          </div>
-          <div style={styles.input}>
+          <div className='row'>
+            <div className='col'>
+          
+            <label className='login-username' htmlFor='login-username'>USERNAME</label>
+            <div>
             <input id="login-username" type="text" value={username} onChange={handleUsernameEdit}/>
-          </div>
-          <div style={styles.label}>
-            <label htmlFor='login-password'>PASSWORD</label>
-          </div>
-          <div style={styles.input}>
+            </div>
+
+            <label className='login-password' htmlFor='login-password'>PASSWORD</label>
+
+            <div>
             <input id='login-password' type="password" value={password} onChange={handlePasswordEdit}/>
-          </div>
-          <button style={styles.button} onClick={loginChange}>
+            </div>
+          <button className='login-button' onClick={loginChange}>
             <img id="login-button" src="./images/SigninBtn.png" alt="signin" />
           </button>
+          </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
