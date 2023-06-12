@@ -69,6 +69,10 @@ const ProfilePage = () => {
     navigate(`/search?q=${searchInput}`);
   };
 
+  const handleChat = () => {
+    navigate('/chat');
+  }
+
   const hangmanChange = () => {
     navigate('/hangman');
   };
@@ -138,6 +142,7 @@ const ProfilePage = () => {
           <div className="search">
             {/* <input type='text' placeholder='find users...' /> */}
             <button onClick={handleSearch}>Find Friends</button>
+            <button onClick={handleChat}>Chat</button>
           </div>
             <div style={styles.container}>
 

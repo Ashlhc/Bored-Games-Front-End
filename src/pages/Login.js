@@ -20,8 +20,10 @@ const LoginForm = () => {
       try {
         const response = await API.login(username, password);
         const token = response.token;
+        const user = response.user;
 
         localStorage.setItem('token', token);
+        localStorage.setItem('user', user);
 
         window.location.href = '/profile';
       } catch(error) {
