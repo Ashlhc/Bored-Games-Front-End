@@ -30,7 +30,7 @@ const Timer = ({onLoseGame}) => {
   },[])
 
   return (
-    <div style={{zIndex: '10'}}>
+    <div className="timer">
       {`time remaining: ${state.time}`}
     </div>
   );

@@ -237,9 +237,8 @@ button {
   border: 1px solid black;
   padding: 5px;
   cursor: pointer;
-  font-size: x-large;
+  font-size: larger;
 }
-
 
 .head-image {
   left: 40px;
@@ -285,4 +284,51 @@ button {
 .rightleg-image {
   left: 60px;
   top: 200px;
+}
+
+.completed-word {
+  display: flex;
+  gap: 2px;
+  font-size: 150%;
+}
+.hangman-image-container {
+  display: flex;
+  position: relative;
+  width: 300px;
+  height: 400px;
+}
+
+.timer {
+  z-index: 10;
+  position: relative;
+  left: -100px;
+}
+
+@media (max-width: 600px) {
+  .selectable-letter-container {
+      font-size: 10px;
+      position: relative;
+      left: -100px;
+  }
+
+  .timer {
+    position: relative;
+  }
+  .completed-word {
+    display: flex;
+    gap: 1px;
+    font-size: 100%;
+    position: relative;
+    bottom: -80px;
+  }
+  .hangman-image-container {
+    display: flex;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    scale: 0.5;
+    left: -40px;
+  }
+  
+
 }

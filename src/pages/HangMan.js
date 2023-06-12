@@ -32,8 +32,8 @@ export default function HangMan({ duration = 120000 }) {
       loseGame,
       winGame,
       state,
-      wins,
-      losses
+      // wins,
+      // losses
     } = useGameState();
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -131,11 +131,11 @@ export default function HangMan({ duration = 120000 }) {
 
 
             {/* win losess */}
-            <div style={{
+            {/* <div style={{
               display: 'flex'
             }}>
               {`Wins: ${wins} Losses: ${losses}`}
-            </div>
+            </div> */}
 
             <button onClick={() => {
               startGame()
@@ -147,7 +147,6 @@ export default function HangMan({ duration = 120000 }) {
           state === 'playing' &&
           <div style={{
             display: 'flex',
-
           }}>
 
             <div style={{
@@ -173,12 +172,8 @@ export default function HangMan({ duration = 120000 }) {
                   alignItems: 'center'
                 }}>
                   {/* Hangman image container */}
-                  <div style={{
-                    display: 'flex',
-                    position: 'relative',
-                    width: '300px',
-                    height: '400px',
-                  }}>
+                  <div className='hangman-image-container'
+                  >
                     {
                       incorrectGuesses.length > 8 &&
                       <img className='hangman-image rope-image' src={Rope_image} alt={'Rope_image'} />
@@ -218,11 +213,7 @@ export default function HangMan({ duration = 120000 }) {
                   </div>
 
                   {/* Compelted word */}
-                  <div style={{
-                    display: 'flex',
-                    gap: '2px',
-                    fontSize: '30px'
-                  }}>
+                  <div className="completed-word">
                     {
                       word.split('').map((char, key) => {
                         if (correctGuesses.includes(char)) {

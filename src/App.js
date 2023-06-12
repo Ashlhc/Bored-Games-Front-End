@@ -4,6 +4,8 @@ import Home from "./pages/Home.js";
 import Profile from "./pages/Profile.js";
 import Signup from "./pages/Signup.js";
 import Login from "./pages/Login.js";
+import Chat from "./pages/Chat.js";
+
 
 import HangMan from "./pages/HangMan.js"
 import Search from "./pages/Search.js";
@@ -20,7 +22,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/hangman" element={<HangMan />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/search" element={<Search />} />\
+        <Route path="/chat" element={<Chat />} />
     </Routes>
     </Router>
   );
