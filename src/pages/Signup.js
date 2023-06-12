@@ -4,6 +4,7 @@ import '../css/index.css';
 import backgroundImgDesktop from '../assets/backgroundimg.png';
 import backgroundImgMobile from '../assets/mobilebkgimg.png';
 import backgroundImgTablet from '../assets/tabletbkgimg.png';
+import API from '../utils/api';
 
 const SignUpForm = () => {
     const [username, setUsername] = useState('');
@@ -36,47 +37,13 @@ const SignUpForm = () => {
             alert('Password must be at least 8 characters long.');
             return;
         }
-
-
-        // Check if the username is already taken
-        const response = await fetch(`/api/user/${username}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-    
-        const json = await response.json();
-    
-        if (json !== null) {
-            alert('Username already taken!');
-            return;
-        }
     
         // If all checks pass, proceed with signup
         try {
-            const signupResponse = await fetch('/user/signup', {
-                method: 'POST',
-                body: JSON.stringify({
-                    username: username,
-                    firstName: firstName,
-                    lastName: lastName,
-                    password: password,
-                }),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-    
-            if (signupResponse.ok) {
+            const res = await API.signup(username, firstName, lastName, password);
+            localStorage.setItem("token", res.token);
 
-                navigate('/profile');
-
-            } else {
-                // Signup failed, display error message or perform any other necessary actions
-                alert('Signup failed. Please try again.');
-                // Add your code here to handle the signup failure
-            }
+            navigate('/profile');
         } catch (error) {
             // Error occurred during signup request, display error message or perform any other necessary actions
             console.error('Signup error:', error);
