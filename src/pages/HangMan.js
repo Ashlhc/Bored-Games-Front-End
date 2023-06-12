@@ -140,6 +140,9 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm
             <button onClick={() => {
               startGame()
             }}>Start game</button>
+            <button onClick={() => {
+              navigate('/profile')
+            }}>Back</button>
           </div>
         }
 
@@ -216,7 +219,7 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm
                     }
                   </div>
 
-                  {/* Compelted word */}
+                  {/* Completed word */}
                   <div style={{
                     display: 'flex',
                     flexDirection: 'row',
