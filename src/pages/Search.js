@@ -93,7 +93,7 @@ return (
         {results.length > 0 ? (
             <ul>
                 {results.map((result, index) => (
-                    <li style={styles.follow} className='follow' key={index}>
+                    <li style={styles.follow} className='follow-list' key={index}>
                         {result.username}
                         {result.isFollow ? (
                             <button className='unfollow' style={styles.button} onClick={() => handleFollow(result.id)}>Unfollow</button>
