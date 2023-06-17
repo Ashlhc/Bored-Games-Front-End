@@ -14,6 +14,24 @@ body {
   border-radius: 25px;
 }
 
+.avatar-options {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.avatar-option {
+  width: 50px;
+  height: 50px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.avatar-option.selected {
+  border: 2px solid #00ff00;
+  border-radius: 50%;
+}
+
 label {
   font-size: x-large;
 }
@@ -27,7 +45,9 @@ input {
 button {
   background-color: transparent;
 }
-
+.welcome {
+  text-align: right;
+}
 .background-image {
   position: absolute;
   width: 100%;
