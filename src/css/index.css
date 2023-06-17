@@ -325,6 +325,37 @@ left: -7%;
   left: 29%;
 
 }
+.chat {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.messages {
+  border: solid 1px cyan;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  gap: 3px;
+  word-wrap: break-word;
+  padding: 3px;
+  border-radius: 5px;
+  background-color: lightcyan;
+  width: 90vw;
+  height: 70vh;
+}
+
+.message {
+  /* border-top: 1px solid black; */
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: lightblue;
+}
 
 @media (max-width: 600px) {
 
