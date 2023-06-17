@@ -63,7 +63,6 @@ export default function HangMan({ duration = 120000 }) {
   } else {
     backgroundImage = backgroundImgMobile;
   }
-  const navigate = useNavigate()
   const styles = {
     container: {
       display: 'flex',

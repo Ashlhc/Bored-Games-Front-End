@@ -59,6 +59,7 @@ const ProfilePage = () => {
   const [searchInput, setSearchInput] = useState('');
   const [showAvatarBox, setShowAvatarBox] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [buttonClicked, setButtonClicked] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -107,6 +108,7 @@ const ProfilePage = () => {
   };
 
   const handleChooseAvatar = () => {
+    setButtonClicked(true)
     setShowAvatarBox(true);
   };
 
@@ -114,7 +116,7 @@ const ProfilePage = () => {
     const response = await fetch('/user');
     const data = await response.json();
 
-    const { username, avatar, wins, losses, following } = data;
+    const { username, avatar, following } = data;
 
     setUsername(username);
     setAvatar(avatar);
@@ -158,6 +160,7 @@ const ProfilePage = () => {
             alignItems: 'center',
             height: '100vh',
             color: 'white',
+            position: 'relative',
           },
           backgroundImage: {
             backgroundImage: `url(${backgroundImage})`,
@@ -251,9 +254,9 @@ const ProfilePage = () => {
                 <img id='hangman-button' src='./images/HangManBtn.png' alt='play hangman' />
               </button>
             </div>
-            {!avatarSelected && !showAvatarBox && (
+            {(
             <div>
-              <button className='choose-avatar' onClick={handleChooseAvatar}>
+              <button className={`choose-avatar ${buttonClicked ? 'move-down' : ''}`} onClick={handleChooseAvatar}>
                 <h3>Choose Avatar:</h3>
               </button>
             </div>
