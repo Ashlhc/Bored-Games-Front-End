@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import API from '../utils/api';
 import '../css/index.css';
 import backgroundImgDesktop from '../assets/backgroundimg.png';
@@ -64,6 +65,12 @@ const ProfilePage = () => {
     fetchUserData();
     window.addEventListener('resize', handleWindowResize);
 
+    const storedAvatar = Cookies.get('avatar');
+    if (storedAvatar) {
+      setAvatar(storedAvatar);
+      setAvatarSelected(true);
+    }
+
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
@@ -96,6 +103,7 @@ const ProfilePage = () => {
     setAvatar(avatar.url);
     setShowAvatarBox(false);
     setAvatarSelected(true);
+    Cookies.set('avatar', avatar.url, {expires: 365});
   };
 
   const handleChooseAvatar = () => {
