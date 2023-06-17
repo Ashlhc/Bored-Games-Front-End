@@ -37,7 +37,7 @@ export default function HangMan({ duration = 120000 }) {
     } = useGameState();
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const navigate = useNavigate();
+  const navigate = 
   useEffect(() => {
     const handleWindowResize = () => {
       setWindowWidth(window.innerWidth);

@@ -45,9 +45,7 @@ input {
 button {
   background-color: transparent;
 }
-.welcome {
-  text-align: right;
-}
+
 .background-image {
   position: absolute;
   width: 100%;
@@ -211,16 +209,23 @@ height: 68%;
 .welcome {
   position: relative;
   top: 10%;
-  left: -10%;
+  left: 0%;
 }
 .choose-avatar {
+  display:flex;
   position:relative;
   border: green;
   background-color: green;
   border-radius: 20px;
-  top: -600%;
-  left: -200%;
+  top: -340%;
+  left: -170%;
+  z-index: 1;
 }
+/* .move-down {
+  margin-top: -12%;
+  margin-left: 0%;
+  left: -165%;
+} */
 .hangman-image {
   position: absolute;
 }
