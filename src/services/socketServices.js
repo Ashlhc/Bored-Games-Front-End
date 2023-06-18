@@ -7,7 +7,7 @@ class SocketService {
 
   connect() {
     // Replace with your server URL
-    this.socket = io('http://localhost:3000');
+    this.socket = io('http://localhost:3001');
 
     this.socket.on("connect", () => {
       console.log(`Connected to the server with id: ${this.socket.id}`);
