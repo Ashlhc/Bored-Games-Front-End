@@ -13,7 +13,11 @@ const handleSearch = async (e) => {
     e.preventDefault();
     try {
         const searchResults = await API.searchUsers(query);
-        setResults(searchResults);
+        const updatedResults = searchResults.map((result) => ({
+            ...result,
+            isFollow: result.isFollow || false,
+        }));
+        setResults(updatedResults);
     } catch (error) {
         console.log('Error performing search:', error);
     }
@@ -63,6 +67,7 @@ const styles = {
 
     const handleFollow = async (id) => {
         try {
+            console.log(localStorage.getItem('token'));
             await API.followUser(id);
             const updatedResults = await API.searchUsers(query);
             setResults(updatedResults);
@@ -93,12 +98,12 @@ return (
         {results.length > 0 ? (
             <ul>
                 {results.map((result, index) => (
-                    <li style={styles.follow} className='follow' key={index}>
+                    <li style={styles.follow} className='follow-list' key={index}>
                         {result.username}
                         {result.isFollow ? (
-                            <button className='unfollow' style={styles.button} onClick={() => handleFollow(result.id)}>Unfollow</button>
+                            <button className='unfollow' style={styles.button} onClick={() => handleUnfollow(result.id)}>Unfollow</button>
                         ) : ( 
-                            <button className='follow' style={styles.button} onClick={() => handleUnfollow(result.id)}>Follow</button>
+                            <button className='follow' style={styles.button} onClick={() => handleFollow(result.id)}>Follow</button>
                         )}
                     </li>
                 ))}

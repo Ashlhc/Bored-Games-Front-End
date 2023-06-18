@@ -71,6 +71,11 @@ const API = {
     return response.json();
   },
 
+  getFollowing: async () => {
+    const response = await fetch(`${BASEURL}/user/following`);
+    return response.json();
+  },
+
   createGame: async (oponentId, maxGuessCount, word) => {
     const response = await fetch(`${BASEURL}/game`, {
       method: 'POST',

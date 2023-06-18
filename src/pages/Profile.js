@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
+import Cookies from 'js-cookie';
 import API from '../utils/api';
 import '../css/index.css';
 import backgroundImgDesktop from '../assets/backgroundimg.png';
@@ -28,45 +30,111 @@ import avatar18 from '../assets/Avatars/dude9.png';
 import avatar19 from '../assets/Avatars/gal10.png';
 import avatar20 from '../assets/Avatars/dude10.png';
 
+const AvatarSelection = ({ avatars, onSelectAvatar }) => {
+  const handleAvatarClick = (avatar) => {
+    onSelectAvatar(avatar);
+  };
+
+  return (
+    <div className='avatar-list'>
+      {avatars.map((avatar) => (
+        <img key={avatar.id} src={avatar.url} alt={avatar.name} onClick={() => handleAvatarClick(avatar)} />
+      ))}
+    </div>
+  );
+};
+
+const AvatarBox = ({ avatars, onSelectAvatar }) => {
+  return (
+    <div className='avatar-box'>
+      <AvatarSelection avatars={avatars} onSelectAvatar={onSelectAvatar} />
+    </div>
+  );
+};
+
 const ProfilePage = () => {
   const [username, setUsername] = useState('');
   const [avatar, setAvatar] = useState('');
+  const [avatarSelected, setAvatarSelected] = useState(false);
   const [following, setFollowing] = useState([]);
   const [searchInput, setSearchInput] = useState('');
-  const [avatarOptions, setAvatarOptions] = useState([]);
-  const [showAvatarChoices, setShowAvatarChoices] = useState(false);
+  const [showAvatarBox, setShowAvatarBox] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
+  const [buttonClicked, setButtonClicked] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchUserData();
+    const storedAvatar = Cookies.get('avatar');
+    if (storedAvatar) {
+      setAvatar(storedAvatar);
+      setAvatarSelected(true);
+    }
+
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    // const fetchUserData = async () => {
+    //   try {
+    //     const token = localStorage.getItem('token');
+    //     if (token) {
+    //     const decodedToken = jwtDecode(token);
+    //     setUsername(decodedToken.username);
+    //     setAvatar(decodedToken.avatar);
+    //     setFollowing(decodedToken.following.map((user) => user.username));
+    //     } else {
+    //       console.error('Token not found in localstorage');
+    //     }
+    //   } catch (error) {
+    //     console.error('Error fetching user data:', error);
+    //   }
+    // };
+
     window.addEventListener('resize', handleWindowResize);
 
+    // fetchUserData();
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
   }, []);
+ 
+  const avatars = [
+    { id: 1, url:avatar1, name:'Avatar 1'},
+    { id: 2, url:avatar2, name:'Avatar 2'},
+    { id: 3, url:avatar3, name:'Avatar 3'},
+    { id: 4, url:avatar4, name:'Avatar 4'},
+    { id: 5, url:avatar5 ,name:'Avatar 5'},
+    { id: 6, url:avatar6 ,name:'Avatar 6'},
+    { id: 7, url:avatar7 ,name:'Avatar 7'},
+    { id: 8, url:avatar8 ,name:'Avatar 8'},
+    { id: 9, url:avatar9 ,name:'Avatar 9'},
+    { id: 10, url:avatar10 ,name:'Avatar 10'},
+    { id: 11, url:avatar11 ,name:'Avatar 11'},
+    { id: 12, url:avatar12 ,name:'Avatar 12'},
+    { id: 13, url:avatar13 ,name:'Avatar 13'},
+    { id: 14, url:avatar14 ,name:'Avatar 14'},
+    { id: 15, url:avatar15 ,name:'Avatar 15'},
+    { id: 16, url:avatar16 ,name:'Avatar 16'},
+    { id: 17, url:avatar17 ,name:'Avatar 17'},
+    { id: 18, url:avatar18 ,name:'Avatar 18'},
+    { id: 19, url:avatar19 ,name:'Avatar 19'},
+    { id: 20, url:avatar20 ,name:'Avatar 20'},
+  ];
 
-  const fetchUserData = async () => {
-    const response = await fetch('/user');
-    const data = await response.json();
-
-    const { username, avatar, wins, losses, following } = data;
-
-    setUsername(username);
-    setAvatar(avatar);
-    setFollowing(following);
-    setAvatarOptions([avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9,
-    avatar10, avatar11, avatar12, avatar13, avatar14, avatar15, avatar16, avatar17, avatar18, avatar19, avatar20 ]);
+  const handleAvatarClick = (avatar) => {
+    setAvatar(avatar.url);
+    setShowAvatarBox(false);
+    setAvatarSelected(true);
+    Cookies.set('avatar', avatar.url, {expires: 365});
   };
 
-  const handleWindowResize = () => {
-    setWindowWidth(window.innerWidth);
+  const handleChooseAvatar = () => {
+    setButtonClicked(true)
+    setShowAvatarBox(true);
   };
 
   const handleSearch = () => {
-    navigate(`/search?q=${searchInput}`);
+    navigate('/search');
   };
 
   const handleChat = () => {
@@ -77,11 +145,14 @@ const ProfilePage = () => {
     navigate('/hangman');
   };
 
-  const handleAvatarChange = (option) => {
-    setAvatar(option);
-    setShowAvatarChoices(false);
+  const handleWindowResize = () => {
+    setWindowWidth(window.innerWidth);
   };
 
+
+const WelcomeMessage = ({ username }) => {
+  return <h1>Welcome {localStorage.getItem('username') || username}!</h1>
+};
   let backgroundImage;
 
   if (windowWidth >= 1920) {
@@ -103,6 +174,7 @@ const ProfilePage = () => {
             alignItems: 'center',
             height: '100vh',
             color: 'white',
+            position: 'relative',
           },
           backgroundImage: {
             backgroundImage: `url(${backgroundImage})`,
@@ -112,83 +184,109 @@ const ProfilePage = () => {
             height: '100vh',
           },
           polaroid: {
+            position: 'fixed',
             border: '10px solid white',
             borderBottomWidth: '75px',
             borderRadius: '0',
             padding: '0',
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             transform: 'rotate(-20deg)',
-            position: 'relative',
-            top: '150px',
-            left: '-400px',
-          },
-          h1: {
-            textAlign: 'center',
+            top: '28%',
+            left: '20%',
           },
           h2: {
             textAlign: 'center',
           },
           h3: {
-            textAlign: 'center',
+            position: 'relative',
+            top: '25%',
           },
           hangmanButton: {
             border: 'transparent',
-          }
+            position: 'static',
+          },
+          avatarList: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            marginTop: '2%',
+          },
+          avatarBox: {
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'rgba(0,0,0,0.7)',
+            zIndex: 999,
+          },
+          avatarContainer: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            marginTop: '2%',
+          },
+          avatarImage: {
+            width: '80px',
+            height: '80px',
+            margin: '10px',
+            cursor: 'pointer',
+          },
       };
 
 
       return (
         <div style={styles.backgroundImage} className='background-image'>
-          <div className="search">
-            {/* <input type='text' placeholder='find users...' /> */}
+          <div style={styles.container}>
+          <div className='search'>
             <button onClick={handleSearch}>Find Friends</button>
             <button onClick={handleChat}>Chat</button>
           </div>
-            <div style={styles.container}>
-
+            <div className='welcome'>
+            <WelcomeMessage username={username}/>
+            </div>
             {avatar && (
-                <div style={styles.polaroid}>
+              <div style={styles.polaroid}>
                 <img className='avatar' src={avatar} alt='avatar' />
-                </div>
+              </div>
             )}
             {!avatar && (
-                <div className='no-avatar'>
-                    <p>No Avatar Selected</p>
-                </div>
-            )}
-            <div className="welcome">
-            <h1>Welcome {username}!</h1>
-            </div>
-            <div>
-                <h2>{following}</h2>
-                <img className="gallows-gang" id="gallows-gang" src="./images/GallowsGang.png" />
-            </div>
-            <div>
-                <button className='hangman-button' style={styles.hangmanButton} onClick={hangmanChange}>
-                    <img id="hangman-button" src="./images/HangManBtn.png" alt="play hangman" />
-                </button>
-            </div>
-              <div>
-                <button className="choose-avatar" onClick={() => setShowAvatarChoices(!showAvatarChoices)}>
-                <h3>Choose Avatar:</h3>
-                </button>
-                {showAvatarChoices && (
-  <div>
-    {avatarOptions.map((option, index) => {
-      return (
-        <img
-          key={index}
-          src={option}
-          alt={`Avatar ${index + 1}`}
-          onClick={() => handleAvatarChange(option)}
-        />
-      );
-    })}
-  </div>
-)}
+              <div className='no-avatar'>
+                <p>No Avatar Selected</p>
               </div>
-        </div>
-        </div>
+            )}
+            
+            <div>
+              <h2>{following}</h2>
+              <img className='gallows-gang' id='gallows-gang' src='./images/GallowsGang.png' />
+            </div>
+            <div>
+              <button className='hangman-button' style={styles.hangmanButton} onClick={hangmanChange}>
+                <img id='hangman-button' src='./images/HangManBtn.png' alt='play hangman' />
+              </button>
+            </div>
+            {(
+            <div>
+              <button className={`choose-avatar ${buttonClicked ? 'move-down' : ''}`} onClick={handleChooseAvatar}>
+                <h3>Choose Avatar:</h3>
+              </button>
+            </div>
+            )}
+
+            {showAvatarBox && (
+              <div style={styles.avatarBox}>
+                <div style={styles.avatarContainer}>
+                <AvatarSelection avatars={avatars} style={styles.avatarImage} onSelectAvatar={handleAvatarClick} />
+                </div>
+              </div>
+            )}
+            </div>
+            </div>
       );
-};
-export default ProfilePage;
+    };
+    
+    export default ProfilePage;

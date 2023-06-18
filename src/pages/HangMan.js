@@ -37,7 +37,7 @@ export default function HangMan({ duration = 120000 }) {
     } = useGameState();
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const handleWindowResize = () => {
       setWindowWidth(window.innerWidth);
@@ -63,7 +63,6 @@ export default function HangMan({ duration = 120000 }) {
   } else {
     backgroundImage = backgroundImgMobile;
   }
-  const navigate = useNavigate()
   const styles = {
     container: {
       display: 'flex',
