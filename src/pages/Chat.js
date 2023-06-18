@@ -2,7 +2,7 @@ import React, { useEffect, useState, useId } from "react";
 import io from "socket.io-client";
 import { useNavigate } from 'react-router-dom';
 
-const socket = io.connect("https://wellington-j-gallowsby-hangman.netlify.app/");
+const socket = io.connect("http://localhost:3000");
 
 function Chat() {
   const [messages, setMessages] = useState([]);

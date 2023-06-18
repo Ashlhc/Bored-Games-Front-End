@@ -38,7 +38,7 @@ const API = {
   },
 
   getUsers: async () => {
-    const response = await fetch(`${BASEURL}/user`);
+    const response = await fetch(`${BASEURL}/`);
     return response.json();
   },
   
@@ -47,7 +47,10 @@ const API = {
     return response.json();
   },
 
- 
+ getCurrentUser: async () => {
+  const response = await fetch(`${BASEURL}/user/current`);
+  return response.json();
+ },
 
  followUser: async (id) => {
     const response = await fetch(`${BASEURL}/user/follow/${id}`, {
