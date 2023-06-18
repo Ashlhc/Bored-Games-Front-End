@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import Cookies from 'js-cookie';
 import API from '../utils/api';
 import '../css/index.css';
@@ -63,20 +64,40 @@ const ProfilePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchUserData();
-    window.addEventListener('resize', handleWindowResize);
-
     const storedAvatar = Cookies.get('avatar');
     if (storedAvatar) {
       setAvatar(storedAvatar);
       setAvatarSelected(true);
     }
 
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    // const fetchUserData = async () => {
+    //   try {
+    //     const token = localStorage.getItem('token');
+    //     if (token) {
+    //     const decodedToken = jwtDecode(token);
+    //     setUsername(decodedToken.username);
+    //     setAvatar(decodedToken.avatar);
+    //     setFollowing(decodedToken.following.map((user) => user.username));
+    //     } else {
+    //       console.error('Token not found in localstorage');
+    //     }
+    //   } catch (error) {
+    //     console.error('Error fetching user data:', error);
+    //   }
+    // };
+
+    window.addEventListener('resize', handleWindowResize);
+
+    // fetchUserData();
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
   }, []);
-
+ 
   const avatars = [
     { id: 1, url:avatar1, name:'Avatar 1'},
     { id: 2, url:avatar2, name:'Avatar 2'},
@@ -112,23 +133,8 @@ const ProfilePage = () => {
     setShowAvatarBox(true);
   };
 
-  const fetchUserData = async () => {
-    const response = await fetch('/user');
-    const data = await response.json();
-
-    const { username, avatar, following } = data;
-
-    setUsername(username);
-    setAvatar(avatar);
-    setFollowing(following.map((user) => user.username));
-  };
-
-  const handleWindowResize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
   const handleSearch = () => {
-    navigate(`/search?q=${searchInput}`);
+    navigate('/search');
   };
 
   const handleChat = () => {
@@ -139,6 +145,14 @@ const ProfilePage = () => {
     navigate('/hangman');
   };
 
+  const handleWindowResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+
+const WelcomeMessage = ({ username }) => {
+  return <h1>Welcome {localStorage.getItem('username') || username}!</h1>
+};
   let backgroundImage;
 
   if (windowWidth >= 1920) {
@@ -227,11 +241,14 @@ const ProfilePage = () => {
 
       return (
         <div style={styles.backgroundImage} className='background-image'>
+          <div style={styles.container}>
           <div className='search'>
             <button onClick={handleSearch}>Find Friends</button>
             <button onClick={handleChat}>Chat</button>
           </div>
-          <div style={styles.container}>
+            <div className='welcome'>
+            <WelcomeMessage username={username}/>
+            </div>
             {avatar && (
               <div style={styles.polaroid}>
                 <img className='avatar' src={avatar} alt='avatar' />
@@ -242,9 +259,7 @@ const ProfilePage = () => {
                 <p>No Avatar Selected</p>
               </div>
             )}
-            <div className='welcome'>
-              <h1>Welcome {username}!</h1>
-            </div>
+            
             <div>
               <h2>{following}</h2>
               <img className='gallows-gang' id='gallows-gang' src='./images/GallowsGang.png' />
