@@ -6,8 +6,7 @@ class SocketService {
   }
 
   connect() {
-    // Replace with your server URL
-    this.socket = io('http://localhost:3001');
+    this.socket = io('https://wellington-j-gallowsby-hangman.netlify.app/');
 
     this.socket.on("connect", () => {
       console.log(`Connected to the server with id: ${this.socket.id}`);
