@@ -74,30 +74,30 @@ const ProfilePage = () => {
       setWindowWidth(window.innerWidth);
     };
 
-    const fetchUserData = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (token) {
-        const decodedToken = jwtDecode(token);
-        setUsername(decodedToken.username);
-        setAvatar(decodedToken.avatar);
-        setFollowing(decodedToken.following.map((user) => user.username));
-        } else {
-          console.error('Token not found in localstorage');
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
+    // const fetchUserData = async () => {
+    //   try {
+    //     const token = localStorage.getItem('token');
+    //     if (token) {
+    //     const decodedToken = jwtDecode(token);
+    //     setUsername(decodedToken.username);
+    //     setAvatar(decodedToken.avatar);
+    //     setFollowing(decodedToken.following.map((user) => user.username));
+    //     } else {
+    //       console.error('Token not found in localstorage');
+    //     }
+    //   } catch (error) {
+    //     console.error('Error fetching user data:', error);
+    //   }
+    // };
 
     window.addEventListener('resize', handleWindowResize);
 
-    fetchUserData();
+    // fetchUserData();
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
   }, []);
-
+ 
   const avatars = [
     { id: 1, url:avatar1, name:'Avatar 1'},
     { id: 2, url:avatar2, name:'Avatar 2'},
@@ -133,13 +133,8 @@ const ProfilePage = () => {
     setShowAvatarBox(true);
   };
 
-
-  const handleWindowResize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
   const handleSearch = () => {
-    navigate(`/search?q=${searchInput}`);
+    navigate('/search');
   };
 
   const handleChat = () => {
@@ -149,6 +144,12 @@ const ProfilePage = () => {
   const hangmanChange = () => {
     navigate('/hangman');
   };
+
+  const handleWindowResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+
 const WelcomeMessage = ({ username }) => {
   return <h1>Welcome {localStorage.getItem('username') || username}!</h1>
 };
@@ -240,11 +241,11 @@ const WelcomeMessage = ({ username }) => {
 
       return (
         <div style={styles.backgroundImage} className='background-image'>
+          <div style={styles.container}>
           <div className='search'>
             <button onClick={handleSearch}>Find Friends</button>
             <button onClick={handleChat}>Chat</button>
           </div>
-          <div style={styles.container}>
             <div className='welcome'>
             <WelcomeMessage username={username}/>
             </div>
