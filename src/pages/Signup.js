@@ -41,7 +41,7 @@ const SignUpForm = () => {
         // If all checks pass, proceed with signup
         try {
             const res = await API.signup(username, firstName, lastName, password);
-            localStorage.setItem("token", res.token);
+            localStorage.setItem("username", username);
 
             navigate('/profile');
         } catch (error) {
