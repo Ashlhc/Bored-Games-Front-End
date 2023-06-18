@@ -8,7 +8,6 @@ import Chat from "./pages/Chat.js"
 
 import HangMan from "./pages/HangMan.js"
 import Search from "./pages/Search.js";
-// import Navbar from './components/Navbar.js';
 function App() {
   const [username, setUsername] = useState("");
 

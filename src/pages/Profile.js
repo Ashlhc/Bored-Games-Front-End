@@ -53,6 +53,7 @@ const AvatarBox = ({ avatars, onSelectAvatar }) => {
 };
 
 const ProfilePage = () => {
+  const [currentUser, setCurrentUser] = useState(null);
   const [username, setUsername] = useState('');
   const [avatar, setAvatar] = useState('');
   const [avatarSelected, setAvatarSelected] = useState(false);
@@ -74,25 +75,19 @@ const ProfilePage = () => {
       setWindowWidth(window.innerWidth);
     };
 
-    // const fetchUserData = async () => {
-    //   try {
-    //     const token = localStorage.getItem('token');
-    //     if (token) {
-    //     const decodedToken = jwtDecode(token);
-    //     setUsername(decodedToken.username);
-    //     setAvatar(decodedToken.avatar);
-    //     setFollowing(decodedToken.following.map((user) => user.username));
-    //     } else {
-    //       console.error('Token not found in localstorage');
-    //     }
-    //   } catch (error) {
-    //     console.error('Error fetching user data:', error);
-    //   }
-    // };
+   
 
     window.addEventListener('resize', handleWindowResize);
+    const fetchUserData = async () => {
+      try {
+        const user = await API.getCurrentUser();
+        setCurrentUser(user);
+      }catch (error) {
+        console.error(error);
+      }
+    };
 
-    // fetchUserData();
+    fetchUserData();
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
@@ -247,7 +242,7 @@ const WelcomeMessage = ({ username }) => {
             <button onClick={handleChat}>Chat</button>
           </div>
             <div className='welcome'>
-            <WelcomeMessage username={username}/>
+            {currentUser &&<WelcomeMessage username={currentUser.username}/>}
             </div>
             {avatar && (
               <div style={styles.polaroid}>
