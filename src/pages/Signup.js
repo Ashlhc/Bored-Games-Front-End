@@ -13,6 +13,9 @@ const SignUpForm = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
+    const handleGoBack = () => {
+        navigate("/profile")
+    }
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
     };
@@ -118,6 +121,7 @@ const SignUpForm = () => {
         <div style={styles.backgroundImage} className="background-image">
             <div id='Signup'>
                 <div style={styles.container}>
+                    <button onClick={handleGoBack}>Back</button>
                     <div className="row">
                     <div className="col">
                        

@@ -6,7 +6,9 @@ class SocketService {
   }
 
   connect() {
-    this.socket = io('https://wellington-j-gallowsby-hangman.netlify.app/');
+    // Replace with your server URL
+    this.socket = io('https://uw-bootcamp-bored-games.herokuapp.com/');
+
 
     this.socket.on("connect", () => {
       console.log(`Connected to the server with id: ${this.socket.id}`);
