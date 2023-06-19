@@ -263,11 +263,11 @@ const WelcomeMessage = ({ username }) => {
             <div>
               <div className='gallows-gang-container'>
               <img className='gallows-gang' id='gallows-gang' src='./images/GallowsGang.png' />
-              {/* <ul className='following-list'>{following.map((username) => {
+              <ul className='following-list'>{following.map((username) => {
                 return <li>{username}</li>
-              })}</ul> */}
+              })}</ul>
 
-
+              {/* TESTING
               <ul className='following-list'>
                 <li>asdfasdfasdfasdf</li>
                 <li>asdfasasdfasdfasdfdf</li>
@@ -295,7 +295,7 @@ const WelcomeMessage = ({ username }) => {
                 <li>asdfasdf</li>
                 <li>assdf</li>
 
-              </ul>
+              </ul> */}
 
 
             </div>

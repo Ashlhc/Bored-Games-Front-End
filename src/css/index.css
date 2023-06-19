@@ -1,72 +1,37 @@
-* {
-  font-family: 'Press Start 2P', cursive;
-}
 :root {
   --letter-default-color:#e1db8c;
+}
+
+
+
+
+/* ----------------| MULTIPLE USES |---------------- */
+* {
+  font-family: 'Press Start 2P', cursive;
 }
 body {
   display: block;
   margin: 0px;
 }
-
-.login-username,
-.login-password {
-  border-radius: 25px;
-}
-
-.avatar-options {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.avatar-option {
-  width: 50px;
-  height: 50px;
-  margin: 0 5px;
-  cursor: pointer;
-}
-
-.follow-list {
-  color: #00ff00;
-  height: 100px;
-  overflow: hidden;
-}
-
-.avatar-option.selected {
-  border: 2px solid #00ff00;
-  border-radius: 50%;
-}
-
 label {
   font-size: x-large;
 }
-
 input {
   border: 7.5px solid black;
   padding: 8px;
   border-radius: 25px;
 }
-
 button {
   background-color: transparent;
 }
-
 .background-image {
-  position: absolute;
+  position: fixed;
+  top: 0%;
+  left: 0%;
   width: 100%;
   height: 100%;
   z-index: -1;
 }
-
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
 .hostButton {
   position: relative;
   border: transparent;
@@ -77,56 +42,17 @@ button {
   left: 50%;
   transform: translate(-40%, -575%);
 }
-
-
-
-.gallows-gang {
-  position: relative;
+.hangman-image {
+  position: absolute;
 }
-.gallows-gang-container {
-  display: flex;
-  height: 50vh;
-  position: relative;
-  top: 10%;
-}
-.follow-list {
-  color: #00ff00;
-  height: 50%;
-  width: fit-content;
-  overflow: hidden;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  position: relative;
-  top: 40%;
+.back-btn {
+  background-color: #0bd30b;
+  margin: 10px;
 }
 
 
 
-
-.joinButton {
-  position: relative;
-  border: transparent;
-  width: 100%;
-  height: var(--button-height);
-  margin-bottom: 8%;
-  top: 65%;
-  left: 50%;
-  transform: translate(-41%, -610%)
-}
-
-.practiceButton {
-  position: relative;
-  border: transparent;
-  background-color: transparent;
-  width: var(--button-width);
-  height: var(--button-height);
-  top: 80%;
-  left: 50%;
-  transform: translate(-40%, -530%);
-}
-
+/* ----------------| HOME PAGE ONLY |---------------- */
 .home-signinButton {
   position: relative;
   border: transparent;
@@ -146,6 +72,14 @@ button {
   transform: translate(20%, -170%);
   
 }
+.home-HangMan {
+  height: 70%;
+  transform: translate(100%, 28.5%);
+}
+
+
+
+/* ----------------| SIGN UP PAGE ONLY |---------------- */
 .signup-signupButton {
   position: relative;
   border: transparent;
@@ -175,6 +109,9 @@ button {
   left: 40%;
 }
 
+
+
+/* ----------------| LOGIN PAGE ONLY |---------------- */
 .login-username {
   position: relative;
   top: 12.5%;
@@ -196,26 +133,133 @@ button {
   display: flex;
   justify-content: center;
 }
+.login-username, .login-password {
+  border-radius: 25px;
+}
+
+
+
+/* ----------------| PROFILE PAGE ONLY |---------------- */
+.search {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 1%;
+  top: 10px;
+  background-color: rgb(197, 72, 255);
+  cursor: pointer;
+  z-index: 99;
+}
+.gallows-gang-container {
+  display: flex;
+  height: 60%;
+  width: 100%;
+  position: relative;
+  top: 5%;
+  right: 20%;
+}
+.gallows-gang {
+  position: relative;
+  left: 60%;
+  top: 10%;
+}
+.welcome {
+  color: #00ff00;
+  position: relative;
+  top: 10%;
+  left: 0%;
+  background-color: black;
+  padding: 0 1vw;
+}
+.hangman-button-container {
+  height: fit-content;
+  position: absolute;
+  top: 80%;
+}
+.hangman-button {
+  position: relative;
+  top: 0%;
+  left: 0%;
+  scale: 70%;
+  height: 10%;
+}
+.following-list {
+  color: #00ff00;
+  height: 50%;
+  width: fit-content;
+  gap: 5px 50px;
+  overflow: hidden;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: relative;
+  top: 40%;
+  left: 120px;
+  overflow-x: scroll;
+  scroll-snap-align: x mandatory;
+  list-style: none;
+}
+.profile-pic-area {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  top: 20%;
+  left: -20%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.choose-avatar {
+  display:flex;
+  position:relative;
+  border: green;
+  background-color: rgb(0, 182, 0);
+  border-radius: 20px;
+  top: 600%;
+  left: 20%;
+  z-index: 0;
+  scale: 80%;
+}
+.no-avatar {
+  position: relative;
+  top: 30%;
+  left: -23.5%;
+}
+.avatar-options {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.avatar-option {
+  width: 50px;
+  height: 50px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.avatar-option.selected {
+  border: 2px solid #00ff00;
+  border-radius: 50%;
+}
+.polaroid {
+  scale: 75%;
+  position: absolute;
+  top: 28%;
+  left: 20%;
+}
+
+
+
+/* ----------------| HANGMAN PAGE ONLY |---------------- */
 .letter-button { 
   border: transparent;
   background-color: transparent;
 }
-.search {
-  position: absolute;
-  right: 25%;
-  top: 20px;
-}
-
-
 .rope {
 top: 50%;
 left: 50%;
 transform: translate(46%, -78%);
 height: 68%;
 }
-/* .hangman-container {
-
-
 .hangman-container {
   position: relative;
   top: 49%;
@@ -224,53 +268,11 @@ height: 68%;
   width: 16%;
   height: 74%;
 
-} */
+}
 .HangMan {
   position: relative;
   height: 70%;
   transform: translate(-50%, 12%);
-}
-.home-HangMan {
-  height: 70%;
-  transform: translate(100%, 28.5%);
-}
-.gallows-gang {
-  position: relative;
-  left: 60%;
-  top: 10%;
-}
-.welcome {
-  position: relative;
-  top: 10%;
-  left: 0%;
-}
-.choose-avatar {
-  display:flex;
-  position:relative;
-  border: green;
-  background-color: green;
-  border-radius: 20px;
-  top: -340%;
-  left: -170%;
-  z-index: 1;
-}
-/* .move-down {
-  margin-top: -12%;
-  margin-left: 0%;
-  left: -165%;
-} */
-.hangman-image {
-  position: absolute;
-}
-.hangman-button {
-  position: relative;
-  top: 70%;
-  left: 0%;
-}
-.no-avatar {
-  position: relative;
-  top: 30%;
-  left: -23.5%;
 }
 .letters-container {
   display: flex;
@@ -279,7 +281,6 @@ height: 68%;
   flex-wrap: wrap;
   height: fit-content;
 }
-
 .selectable-letter-container {
   rotate: 45deg;
   display: flex;
@@ -292,35 +293,28 @@ height: 68%;
 .lightgreen {
   background: lightgreen;
 }
-
 .red {
   background-color: red;
 }
-
+/* v v v v v v v v v  hangman parts  v v v v v v v v v */
 .head-image {
   width: 80%;
   height: 40%;
   left: 10%;
   top: 10%;
 }
-
-
-
 .accessory-image {
 width: 110%;
 height: 100%;
 top: -25%;
 left: -7%;
-
 }
-
 .chest-image {
   width: 70%;
   height: 40%;
   left: 13%;
   top: 29%;
 }
-
 .hair-image {
   width: 100%;
   height: 75%;
@@ -328,21 +322,18 @@ left: -7%;
   left: -2%;
 
 }
-
 .leftarm-image {
   width: 32%;
   height: 22%;
   top: 38%;
   left: 56%;
 }
-
 .rightarm-image {
   width: 22%;
   height: 24.5%;
   top: 36%;
   left: 18%;
 }
-
 .leftleg-image {
   width: 30%;
   height: 20%;
@@ -350,14 +341,23 @@ left: -7%;
   left: 44%;
 
 }
-
 .rightleg-image {
   width: 20%;
   height: 23%;
   top: 53%;
   left: 29%;
-
 }
+/* ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ */
+
+
+/* ---------------| SEARCH PAGE ONLY |---------------- */
+.follow-list {
+  list-style: none;
+}
+
+
+
+/* ----------------| CHAT PAGE ONLY |---------------- */
 .chat {
   display: flex;
   width: 100vw;
@@ -365,7 +365,6 @@ left: -7%;
   justify-content: center;
   align-items: center;
 }
-
 .messages {
   border: solid 1px cyan;
   display: flex;
@@ -379,84 +378,78 @@ left: -7%;
   width: 90vw;
   height: 70vh;
 }
-
-/* .message {
-  border-top: 1px solid black;
-} */
-
 .divider {
   width: 100%;
   height: 1px;
   background-color: lightblue;
 }
 
-@media (max-width: 600px) {
 
-  .hostButton {
-      top: 40%;
-      transform: translate(-27%, -600%);
-      width: 60%;
-      height: 10%;
-  }
 
-  .joinButton {
-      top: 55%;
-      transform: translate(-33%, -610%);
-      width: 80%;
-      height: 10%;
-  }
-
-  .practiceButton {
-      top: 70%;
-      transform: translate(-30%, -800%);
-      width: 70%;
-      height: 10%;
-  }
-  .hangman {
-      top: 40%;
-      transform: translate(-65%, -23.5%);
-      width: 35%;
-      height: 70%;
-  }
-  .hangmananyone{
-      top: 40%;
-      transform: translate(10%, -555%);
-      width: 70%;
-      height: 15%;
-  }
+/* ----------------| FOR LATER/MIGHT USE AGAIN |---------------- */
+/* .joinButton {
+  position: relative;
+  border: transparent;
+  width: 100%;
+  height: var(--button-height);
+  margin-bottom: 8%;
+  top: 65%;
+  left: 50%;
+  transform: translate(-41%, -610%)
 }
+.practiceButton {
+  position: relative;
+  border: transparent;
+  background-color: transparent;
+  width: var(--button-width);
+  height: var(--button-height);
+  top: 80%;
+  left: 50%;
+  transform: translate(-40%, -530%);
+} */
+/* .move-down {
+  margin-top: -12%;
+  margin-left: 0%;
+  left: -165%;
+} */
+/* .hangman-container {
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+ }*/
 
+
+/* ################| TABLET VIEW |################ */
 @media (min-width: 601px) and (max-width: 1280px) {
-  .hostButton {
-      top: 45%;
+  .polaroid {
+    scale: 45%;
+    left: 10%;
+    top: 0%;
   }
-
-  .joinButton {
-      top: 60%;
-  }
-
-  .practiceButton {
-      top: 75%;
+  .search {
+    top: 0%;
+    right: 0%;
+    font-size: 8px;
   }
   .HangMan {
     height: 80%;
     transform: translate(-10%, 1%);
   }
-
   .hostButton {
       top: 40%;
       transform: translate(-27%, -600%);
       width: 60%;
       height: 10%;
   }
-
   .joinButton {
       top: 55%;
       transform: translate(-33%, -610%);
       width: 80%;
       height: 10%;
   }
-
   .practiceButton {
       top: 70%;
       transform: translate(-30%, -800%);
@@ -475,4 +468,90 @@ left: -7%;
       width: 70%;
       height: 15%;
   }
+  .welcome {
+    scale: 75%;
+  }
+  .hangman-button{
+  scale: 50%;
+  }
+  .gallows-gang-container {
+    scale: 70%;
+    right: 15%;
+  }
+  .profile-pic-area {
+    left: -30%;
+  }
+  .choose-avatar {
+    scale: 60%;
+    top: 500%;
+  }
+
+/* ----------------| DEFUNCT |---------------- */
+/* .hostButton {
+      top: 45%;
+  }
+  .joinButton {
+      top: 60%;
+  }
+  .practiceButton {
+      top: 75%;
+  } 
+}*/
+} 
+
+
+
+
+/* MOBILE VIEW */
+@media (max-width: 600px) {
+  .hostButton {
+      top: 40%;
+      transform: translate(-27%, -600%);
+      width: 60%;
+      height: 10%;
+  }
+  .joinButton {
+      top: 55%;
+      transform: translate(-33%, -610%);
+      width: 80%;
+      height: 10%;
+  }
+  .practiceButton {
+      top: 70%;
+      transform: translate(-30%, -800%);
+      width: 70%;
+      height: 10%;
+  }
+  .hangman {
+      top: 40%;
+      transform: translate(-65%, -23.5%);
+      width: 35%;
+      height: 70%;
+  }
+  .hangmananyone{
+      top: 40%;
+      transform: translate(10%, -555%);
+      width: 70%;
+      height: 15%;
+  }
+  .welcome {
+    scale: 65%;
+  }
+  .polaroid {
+    scale: 45%;
+    left: 0%;
+    top: -10%;
+  }
+  .gallows-gang-container {
+    scale: 40%;
+    right: 0%;
+  }
+  .profile-pic-area {
+    left: -30%;
+  }
+  .choose-avatar {
+    scale: 60%;
+    top: 500%;
+  }
 }
+
