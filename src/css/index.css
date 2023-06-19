@@ -50,7 +50,10 @@ button {
   background-color: #0bd30b;
   margin: 10px;
 }
-
+.row {
+  display: flex;
+  justify-content: center;
+}
 
 
 /* ----------------| HOME PAGE ONLY |---------------- */
@@ -130,10 +133,7 @@ button {
   border: transparent;
   top: 15%;
 }
-.row {
-  display: flex;
-  justify-content: center;
-}
+
 .login-username, .login-password {
   border-radius: 25px;
 }
@@ -525,6 +525,9 @@ left: -7%;
     gap: 0px;
     top: -30%;
   }
+  .row  {
+    scale: 75%;
+  }
 
 /* ----------------| DEFUNCT |---------------- */
 /* .hostButton {
@@ -545,7 +548,9 @@ left: -7%;
 /* ################| MOBILE VIEW |################ */
 @media (max-width: 600px) {
   
-
+  .row  {
+    scale: 55%;
+  }
   .hostButton {
       top: 40%;
       transform: translate(-27%, -600%);
