@@ -371,6 +371,7 @@ left: -7%;
 /* ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ */
 
 
+
 /* ---------------| SEARCH PAGE ONLY |---------------- */
 .follow-list {
   list-style: none;
@@ -441,6 +442,7 @@ left: -7%;
   align-items: center;
   height: 100vh;
  }*/
+
 
 
 /* ################| TABLET VIEW |################ */
@@ -528,8 +530,7 @@ left: -7%;
   .row  {
     scale: 75%;
   }
-
-/* ----------------| DEFUNCT |---------------- */
+/* ----------------| FOR LATER/MIGHT USE AGAIN |---------------- */
 /* .hostButton {
       top: 45%;
   }
@@ -546,8 +547,7 @@ left: -7%;
 
 
 /* ################| MOBILE VIEW |################ */
-@media (max-width: 600px) {
-  
+@media (max-width: 600px) { 
   .row  {
     scale: 55%;
   }
