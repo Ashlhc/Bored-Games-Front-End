@@ -54,7 +54,6 @@ const AvatarBox = ({ avatars, onSelectAvatar }) => {
 };
 
 const ProfilePage = () => {
-  const [currentUser, setCurrentUser] = useState(null);
   const [username, setUsername] = useState('');
   const [avatar, setAvatar] = useState('');
   const [avatarSelected, setAvatarSelected] = useState(false);
@@ -254,7 +253,7 @@ const WelcomeMessage = ({ username }) => {
             <button onClick={handleChat}>Chat</button>
           </div>
             <div className='welcome'>
-            {currentUser &&<WelcomeMessage username={currentUser.username}/>}
+              <WelcomeMessage username={username}/>
             </div>
             {avatar && (
               <div style={styles.polaroid}>
