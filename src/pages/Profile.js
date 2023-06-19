@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
 import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
+
 import API from '../utils/api';
 import '../css/index.css';
 import backgroundImgDesktop from '../assets/backgroundimg.png';
@@ -75,19 +76,10 @@ const ProfilePage = () => {
       setWindowWidth(window.innerWidth);
     };
 
-   
-
     window.addEventListener('resize', handleWindowResize);
-    const fetchUserData = async () => {
-      try {
-        const user = await API.getCurrentUser();
-        setCurrentUser(user);
-      }catch (error) {
-        console.error(error);
-      }
-    };
-
+    
     fetchUserData();
+
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
@@ -126,6 +118,26 @@ const ProfilePage = () => {
   const handleChooseAvatar = () => {
     setButtonClicked(true)
     setShowAvatarBox(true);
+  };
+
+  const fetchUserData = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      console.log(token);
+
+      const { username } = jwtDecode(token);
+      setUsername(username);
+      console.log(username);
+
+      // const { avatar } = await API.getSingleUser(username);
+      // setAvatar(avatar);
+      // console.log(avatar);
+
+      const following = (await API.getFollowing()).map(({ username }) => username);
+      setFollowing(following);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleSearch = () => {
@@ -177,6 +189,8 @@ const WelcomeMessage = ({ username }) => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             height: '100vh',
+            position: 'absolute',
+            zIndex: 0,
           },
           polaroid: {
             backgroundColor: 'white',
@@ -257,8 +271,10 @@ const WelcomeMessage = ({ username }) => {
             )}
             
             <div>
-              <h2>{following}</h2>
               <img className='gallows-gang' id='gallows-gang' src='./images/GallowsGang.png' />
+              <ul>{following.map((username) => {
+                return <li>{username}</li>
+              })}</ul>
             </div>
             <div>
               <button className='hangman-button' style={styles.hangmanButton} onClick={hangmanChange}>
