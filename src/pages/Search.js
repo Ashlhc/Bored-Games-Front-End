@@ -94,13 +94,13 @@ const styles = {
 return (
     <div style={styles.backgroundImage}>
         <div style={styles.container}>
+            <button className='back-btn' onClick={() => {
+            navigate('/profile')
+          }}>back</button>
         <form className='searchForm'onSubmit={handleSearch}>
             <input style={styles.input} type="text" value={query} onChange={(e) => setQuery(e.target.value)}
             placeholder="Enter search query" />
             <button style={styles.button} type="submit">Search</button>
-            <button onClick={() => {
-            navigate('/profile')
-          }}>back</button>
         </form>
 
         {results.length > 0 ? (

@@ -104,7 +104,7 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm
 
   return (
     <div style={styles.backgroundImage} className="background-image">
-      <div style={styles.container}>
+      <div style={styles.container} className='game-container'>
 
         {
           (state === 'start' || state === 'win' || state === 'lose') &&
@@ -175,7 +175,7 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm
                   alignItems: 'center'
                 }}>
                   {/* Hangman image container */}
-                  <div style={{
+                  <div className='hangman-image-container' style={{
                     display: 'flex',
                     position: 'relative',
                     width: '300px',
@@ -219,7 +219,7 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm
                   </div>
 
                   {/* Completed word */}
-                  <div style={{
+                  <div className='completed-word' style={{
                     display: 'flex',
                     flexDirection: 'row',
                     alignItems: 'center',
@@ -245,7 +245,7 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm
                   flexDirection: 'column',
                   justifyItems: 'center',
                   alignItems: 'center',
-                  gap: '50px'
+                  gap: '20px'
                 }}>
                   <Timer onLoseGame={loseGame}/>
 
