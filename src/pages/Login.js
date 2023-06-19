@@ -23,10 +23,7 @@ const LoginForm = () => {
 
       try {
         const response = await API.login(username, password);
-        console.log(response);
         const token = response.token;
-
-        console.log(token);
 
         localStorage.setItem('token', token);
 

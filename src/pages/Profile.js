@@ -123,15 +123,12 @@ const ProfilePage = () => {
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem('token');
-      console.log(token);
 
       const { username } = jwtDecode(token);
       setUsername(username);
-      console.log(username);
 
       // const { avatar } = await API.getSingleUser(username);
       // setAvatar(avatar);
-      // console.log(avatar);
 
       const following = (await API.getFollowing()).map(({ username }) => username);
       setFollowing(following);
