@@ -27,6 +27,12 @@ body {
   cursor: pointer;
 }
 
+.follow-list {
+  color: #00ff00;
+  height: 100px;
+  overflow: hidden;
+}
+
 .avatar-option.selected {
   border: 2px solid #00ff00;
   border-radius: 50%;
@@ -71,6 +77,33 @@ button {
   left: 50%;
   transform: translate(-40%, -575%);
 }
+
+
+
+.gallows-gang {
+  position: relative;
+}
+.gallows-gang-container {
+  display: flex;
+  height: 50vh;
+  position: relative;
+  top: 10%;
+}
+.follow-list {
+  color: #00ff00;
+  height: 50%;
+  width: fit-content;
+  overflow: hidden;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: relative;
+  top: 40%;
+}
+
+
+
 
 .joinButton {
   position: relative;
