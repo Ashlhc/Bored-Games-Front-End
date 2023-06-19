@@ -267,15 +267,18 @@ const WelcomeMessage = ({ username }) => {
             )}
             
             <div>
+              <div className='gallows-gang-container'>
               <img className='gallows-gang' id='gallows-gang' src='./images/GallowsGang.png' />
-              <ul>{following.map((username) => {
+              <ul className='follow-list'>{following.map((username) => {
                 return <li>{username}</li>
               })}</ul>
+
             </div>
             <div>
               <button className='hangman-button' style={styles.hangmanButton} onClick={hangmanChange}>
                 <img id='hangman-button' src='./images/HangManBtn.png' alt='play hangman' />
               </button>
+            </div>
             </div>
             {(
             <div>
