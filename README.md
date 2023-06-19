@@ -1,70 +1,138 @@
-# Getting Started with Create React App
+[Bored Games]
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Table of Contents
+ + Overview
+ + Installation
+ + Usage
+ + Features
+ + Contributing
+ + Tests
+ + Deployment
+ + Built+ With
+ + License
+ + Contact
+ + Acknowledgements
 
-## Available Scripts
 
-In the project directory, you can run:
+==== Overview ====
 
-### `npm start`
+Bored Games is an interactive game application built using React.js. In this application, users can play the classic Hangman game against a computer and record their wins and losses. But it doesn't stop there, users can also enjoy social features such as global chat, personalized avatars, and the ability to follow other users and display those followers on their profile.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+========
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+==== User Story ====
 
-### `npm run build`
+As a new user, I want to register for an account so that I can enjoy personalized features and play Hangman.
+As a registered user, I want to log in so that I can access my account.
+As a player, I want to play Hangman against the computer so that I can test my vocabulary and have fun.
+As a user, I want to anonymously chat globally with other users so that I can socialize and discuss the game.
+As a user, I want to choose an avatar so that I can customize my profile.
+As a user, I want to search for other users so that I can find my friends or interesting people to follow.
+As a user, I want to follow other users so that I can show their names on my profile.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+==== Installation ====
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Prerequisites:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Make sure to have Node.js and npm installed in your system.
+A MySQL database is required.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+========
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+==== Usage ====
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Start your MySQL server. This step varies depending on your operating system.
+    On Linux, you can typically start the server with sudo service mysql start
+    On Windows, you can typically start the server through the MySQL Workbench
+    On MacOS, you can typically start the server with mysql.server start from the command line
 
-### Code Splitting
+2. With your MySQL server running, open a new terminal window and navigate to your project directory. Seed your database by running the        following command:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    npm run seed
 
-### Analyzing the Bundle Size
+3. Start your Express.js server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    npm start
 
-### Making a Progressive Web App
+4. Then open http://localhost:3000 or https://wellington-j-gallowsby-hangman.netlify.app/ to view it in the browser.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+========
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+==== Features ====
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+-- Hangman Game against Computer --
 
-### `npm run build` fails to minify
+Test your vocabulary in a fun, engaging way. The Hangman game is fully implemented with 100 juicy words across various categories. These words are chosen at random to give a fresh experience every time you play.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+-- Global Chat --
+
+Connect with other players worldwide through our Global Chat feature. Powered by Socket.IO, our real-time chat feature lets you discuss strategies, share your experiences, or simply connect over shared interests.
+
+
+-- Avatar Customization --
+
+Make your profile unique with our avatar customization feature. Choose from a wide range of available avatars to show off your style to the world.
+
+
+-- User Search and Follow --
+
+Our user search function allows you to find and connect with friends, enemies, or just users you find interesting. Once you follow another user, you'll see their name placed in the "Gallows Gang" section of your profile.
+
+
+-- Persistent User Data --
+
+Thanks to our MySQL database integration and Express.js backend, user data such as scores, settings, and friends lists are persistently stored and retrieved as needed, making for a seamless user experience.
+
+
+-- Responsive Design --
+
+Hangman Plus is designed with responsiveness in mind. Whether you're on a desktop, tablet, or mobile device, you'll enjoy a high-quality user interface and smooth gameplay.
+
+========
+
+
+
+==== Built With ====
+
+React.js - A JavaScript library for building user interfaces, especially single-page applications.
+
+React Router - A standard library for routing in React, used to create dynamic and responsive paths throughout the app.
+
+Express.js - A back-end web application framework for Node.js, used for routing, middleware, and API creation.
+
+Sequelize - A promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite, and Microsoft SQL Server. It allows easy data manipulation and interaction with the database.
+
+MySQL - An open-source relational database management system used for data persistence.
+
+bcrypt - A library to help you hash passwords for secure storage in your database.
+
+jsonwebtoken - A library to create access tokens for secure user authentication.
+
+Socket.IO - A JavaScript library for real-time web applications. It enables real-time, bi-directional communication between web clients and servers.
+
+Node.js - A JavaScript runtime built on Chrome's V8 JavaScript engine, used for executing JavaScript code server-side.
+
+npm - A package manager for JavaScript, used to install and manage project dependencies.
+
+========
+
+
+
+==== License ====
+
+This project is licensed under the MIT License. See the LICENSE.md file for details.
+
+========
+
+
+
