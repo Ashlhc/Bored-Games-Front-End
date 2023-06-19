@@ -147,7 +147,7 @@ const ProfilePage = () => {
 
 
 const WelcomeMessage = ({ username }) => {
-  return <h1>Welcome {localStorage.getItem('username') || username}!</h1>
+  return <h1>Welcome, {localStorage.getItem('username') || username}!</h1>
 };
   let backgroundImage;
   if (windowWidth >= 1920) {
@@ -182,22 +182,16 @@ const WelcomeMessage = ({ username }) => {
           },
           polaroid: {
             backgroundColor: 'white',
-            position: 'fixed',
             border: '10px solid white',
             borderBottomWidth: '75px',
             borderRadius: '0',
             padding: '0',
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             transform: 'rotate(-20deg)',
-            top: '28%',
-            left: '20%',
+            
           },
           h2: {
             textAlign: 'center',
-          },
-          h3: {
-            position: 'relative',
-            top: '25%',
           },
           hangmanButton: {
             border: 'transparent',
@@ -238,14 +232,16 @@ const WelcomeMessage = ({ username }) => {
 
       return (
         <div style={styles.backgroundImage} className='background-image'>
-          <div style={styles.container}>
           <div className='search'>
             <button onClick={handleSearch}>Find Friends</button>
             <button onClick={handleChat}>Chat</button>
           </div>
+
+          <div style={styles.container}>
             <div className='welcome'>
               <WelcomeMessage username={username}/>
             </div>
+            <div className='profile-pic-area'>
             {avatar && (
               <div className='polaroid' style={styles.polaroid}>
                 <img className='avatar' src={avatar} alt='avatar' />
@@ -256,21 +252,6 @@ const WelcomeMessage = ({ username }) => {
                 <p>No Avatar Selected</p>
               </div>
             )}
-            
-            <div>
-              <div className='gallows-gang-container'>
-              <img className='gallows-gang' id='gallows-gang' src='./images/GallowsGang.png' />
-              <ul className='following-list'>{following.map((username) => {
-                return <li>{username}</li>
-              })}</ul>
-
-            </div>
-            <div>
-              <button className='hangman-button' style={styles.hangmanButton} onClick={hangmanChange}>
-                <img id='hangman-button' src='./images/HangManBtn.png' alt='play hangman' />
-              </button>
-            </div>
-            </div>
             {(
             <div>
               <button className={`choose-avatar ${buttonClicked ? 'move-down' : ''}`} onClick={handleChooseAvatar}>
@@ -278,6 +259,53 @@ const WelcomeMessage = ({ username }) => {
               </button>
             </div>
             )}
+            </div>
+            <div>
+              <div className='gallows-gang-container'>
+              <img className='gallows-gang' id='gallows-gang' src='./images/GallowsGang.png' />
+              {/* <ul className='following-list'>{following.map((username) => {
+                return <li>{username}</li>
+              })}</ul> */}
+
+
+              <ul className='following-list'>
+                <li>asdfasdfasdfasdf</li>
+                <li>asdfasasdfasdfasdfdf</li>
+                <li>asdasdf</li>
+                <li>asdfasasdfasddf</li>
+                <li>asdfasdfasdf</li>
+                <li>asdfasdf</li>
+                <li>asdfasdf</li>
+                <li>asdfadf</li>
+                <li>asdfasdfasdfasdf</li>
+                <li>asdfasdf</li>
+                <li>asdfasdf</li>
+                <li>asdsdf</li>
+                <li>asdasdffasdf</li>
+                <li>asdfasdf</li>
+                <li>aasdf</li>
+                <li>asdasdffasdf</li>
+                <li>asdasdfasdfasdffasdf</li>
+                <li>asdfasdf</li>
+                <li>asdfasdf</li>
+                <li>asdfdfasdfasdfaasdf</li>
+                <li>asdfasdf</li>
+                <li>asdasdfasfasdf</li>
+                <li>asdfaasdfasdfsdf</li>
+                <li>asdfasdf</li>
+                <li>assdf</li>
+
+              </ul>
+
+
+            </div>
+            </div>
+            
+            <div className='hangman-button-container'>
+              <button className='hangman-button' style={styles.hangmanButton} onClick={hangmanChange}>
+                <img id='hangman-button' src='./images/HangManBtn.png' alt='play hangman' />
+              </button>
+            </div>
 
             {showAvatarBox && (
               <div style={styles.avatarBox}>
