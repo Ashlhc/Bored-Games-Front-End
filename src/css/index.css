@@ -42,6 +42,7 @@ button {
   left: 50%;
   transform: translate(-40%, -575%);
 }
+
 .hangman-image {
   position: absolute;
 }
@@ -250,6 +251,11 @@ button {
 
 
 /* ----------------| HANGMAN PAGE ONLY |---------------- */
+.game-container {
+  scale: 100%;
+  position: relative;
+  top: 10%;
+}
 .letter-button { 
   border: transparent;
   background-color: transparent;
@@ -295,6 +301,21 @@ height: 68%;
 }
 .red {
   background-color: red;
+}
+.hangman-image-container {
+  position: relative;
+  left: 0%;
+  scale: 80%;
+}
+.completed-word {
+  position: relative;
+  left: -20%;
+  display: 'flex';
+  flex-direction: 'column';
+  align-items: 'center';
+  gap: '2px';
+  font-size: '30px';
+  transform: 'translateX(125%) translateY(425%)';
 }
 /* v v v v v v v v v  hangman parts  v v v v v v v v v */
 .head-image {
@@ -424,6 +445,9 @@ left: -7%;
 
 /* ################| TABLET VIEW |################ */
 @media (min-width: 601px) and (max-width: 1280px) {
+  .game-container {
+    scale: 100%;
+  }
   .polaroid {
     scale: 45%;
     left: 10%;
@@ -433,6 +457,17 @@ left: -7%;
     top: 0%;
     right: 0%;
     font-size: 8px;
+  }
+  .hangman-image-container {
+    position: relative;
+    left: -50%;
+    scale: 60%;
+  }
+  .letters-container {
+    scale: 50%;
+    width: 70vw;
+    flex-wrap: wrap;
+    height: 100px;
   }
   .HangMan {
     height: 80%;
@@ -485,6 +520,11 @@ left: -7%;
     scale: 60%;
     top: 500%;
   }
+  .completed-word {
+    left: -70%;
+    gap: 0px;
+    top: -30%;
+  }
 
 /* ----------------| DEFUNCT |---------------- */
 /* .hostButton {
@@ -502,8 +542,10 @@ left: -7%;
 
 
 
-/* MOBILE VIEW */
+/* ################| MOBILE VIEW |################ */
 @media (max-width: 600px) {
+  
+
   .hostButton {
       top: 40%;
       transform: translate(-27%, -600%);
@@ -552,6 +594,23 @@ left: -7%;
   .choose-avatar {
     scale: 60%;
     top: 500%;
+  }
+  .completed-word {
+    left: -90%;
+    gap: 0px;
+    top: -20%;
+  }
+  .letters-container {
+    scale: 50%;
+    width: 100vw;
+    flex-wrap: wrap;
+    height: 100px;
+  }
+  .game-container {
+    scale: 80%;
+  }
+  .hangman-image-container {
+    left: -80%;
   }
 }
 
