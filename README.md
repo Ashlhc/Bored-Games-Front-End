@@ -78,6 +78,7 @@ Test your vocabulary in a fun, engaging way. The Hangman game is fully implement
 
 Connect with other players worldwide through our Global Chat feature. Powered by Socket.IO, our real-time chat feature lets you discuss strategies, share your experiences, or simply connect over shared interests.
 
+![Global chat](/src/assets/ChatScreenshot.png)
 
 -- Avatar Customization --
 
@@ -136,3 +137,10 @@ This project is licensed under the MIT License. See the LICENSE.md file for deta
 
 
 
+==== Links ====
+
+Deployed app:
+https://wellington-j-gallowsby-hangman.netlify.app/
+
+Backend repository:
+https://github.com/Ashlhc/Bored-Games-Back-End
