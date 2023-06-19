@@ -179,6 +179,7 @@ const WelcomeMessage = ({ username }) => {
             height: '100vh',
           },
           polaroid: {
+            backgroundColor: 'white',
             position: 'fixed',
             border: '10px solid white',
             borderBottomWidth: '75px',
