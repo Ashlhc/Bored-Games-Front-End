@@ -6,7 +6,7 @@ import jwtDecode from 'jwt-decode';
 import API from '../utils/api';
 import '../css/index.css';
 import backgroundImgDesktop from '../assets/backgroundimg.png';
-import backgroundImgMobile from '../assets/mobilepfbkg.png';
+import backgroundImgMobile from '../assets/mobilebkgimg.png';
 import backgroundImgTablet from '../assets/tabletpfbkg.png';
 
 // import avatars
@@ -106,19 +106,16 @@ const ProfilePage = () => {
     { id: 19, url:avatar19 ,name:'Avatar 19'},
     { id: 20, url:avatar20 ,name:'Avatar 20'},
   ];
-
   const handleAvatarClick = (avatar) => {
     setAvatar(avatar.url);
     setShowAvatarBox(false);
     setAvatarSelected(true);
     Cookies.set('avatar', avatar.url, {expires: 365});
   };
-
   const handleChooseAvatar = () => {
     setButtonClicked(true)
     setShowAvatarBox(true);
   };
-
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -135,19 +132,15 @@ const ProfilePage = () => {
       console.error(err);
     }
   };
-
   const handleSearch = () => {
     navigate('/search');
   };
-
   const handleChat = () => {
     navigate('/chat');
   }
-
   const hangmanChange = () => {
     navigate('/hangman');
   };
-
   const handleWindowResize = () => {
     setWindowWidth(window.innerWidth);
   };
@@ -157,7 +150,6 @@ const WelcomeMessage = ({ username }) => {
   return <h1>Welcome {localStorage.getItem('username') || username}!</h1>
 };
   let backgroundImage;
-
   if (windowWidth >= 1920) {
     backgroundImage = backgroundImgDesktop;
   } else if (windowWidth >= 1280) {
@@ -244,7 +236,6 @@ const WelcomeMessage = ({ username }) => {
           },
       };
 
-
       return (
         <div style={styles.backgroundImage} className='background-image'>
           <div style={styles.container}>
@@ -256,7 +247,7 @@ const WelcomeMessage = ({ username }) => {
               <WelcomeMessage username={username}/>
             </div>
             {avatar && (
-              <div style={styles.polaroid}>
+              <div className='polaroid' style={styles.polaroid}>
                 <img className='avatar' src={avatar} alt='avatar' />
               </div>
             )}
@@ -269,7 +260,7 @@ const WelcomeMessage = ({ username }) => {
             <div>
               <div className='gallows-gang-container'>
               <img className='gallows-gang' id='gallows-gang' src='./images/GallowsGang.png' />
-              <ul className='follow-list'>{following.map((username) => {
+              <ul className='following-list'>{following.map((username) => {
                 return <li>{username}</li>
               })}</ul>
 
