@@ -82,6 +82,9 @@ const LoginForm = () => {
     <div style={styles.backgroundImage} className="background-image">
       <div style={styles.container}>
         <div id='Login'>
+          <button onClick={() => {
+            navigate('/')
+          }}>back</button>
           <div className='row'>
             <div className='col'>
           

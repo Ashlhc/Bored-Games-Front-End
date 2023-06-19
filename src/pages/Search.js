@@ -3,6 +3,7 @@ import API from '../utils/api';
 import backgroundImgDesktop from '../assets/backgroundimg.png';
 import backgroundImgTablet from '../assets/tabletbkgimg.png';
 import backgroundImgMobile from '../assets/mobilebkgimg.png';
+import { useNavigate } from 'react-router';
 
 
 
@@ -10,6 +11,7 @@ const Search = () => {
 const [query, setQuery] = useState('');
 const [results, setResults] = useState([]);
 const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+const navigate = useNavigate();
 
 const handleSearch = async (e) => {
     e.preventDefault();
@@ -96,6 +98,9 @@ return (
             <input style={styles.input} type="text" value={query} onChange={(e) => setQuery(e.target.value)}
             placeholder="Enter search query" />
             <button style={styles.button} type="submit">Search</button>
+            <button onClick={() => {
+            navigate('/profile')
+          }}>back</button>
         </form>
 
         {results.length > 0 ? (
