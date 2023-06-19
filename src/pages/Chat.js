@@ -2,7 +2,7 @@ import React, { useEffect, useState, useId } from "react";
 import io from "socket.io-client";
 import { useNavigate } from 'react-router-dom';
 
-const socket = io.connect("https://wellington-j-gallowsby-hangman.netlify.app/");
+const socket = io.connect("https://uw-bootcamp-bored-games.herokuapp.com/");
 
 function Chat() {
   const [messages, setMessages] = useState([]);

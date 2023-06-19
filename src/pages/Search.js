@@ -4,6 +4,8 @@ import backgroundImgDesktop from '../assets/backgroundimg.png';
 import backgroundImgTablet from '../assets/tabletbkgimg.png';
 import backgroundImgMobile from '../assets/mobilebkgimg.png';
 
+
+
 const Search = () => {
 const [query, setQuery] = useState('');
 const [results, setResults] = useState([]);
@@ -64,6 +66,7 @@ const styles = {
         fontSize: '35px',
       },
     };
+
 
     const handleFollow = async (id) => {
         try {
