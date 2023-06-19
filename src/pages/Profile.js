@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
 import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
+
 import API from '../utils/api';
 import '../css/index.css';
 import backgroundImgDesktop from '../assets/backgroundimg.png';
@@ -53,6 +54,7 @@ const AvatarBox = ({ avatars, onSelectAvatar }) => {
 };
 
 const ProfilePage = () => {
+  const [currentUser, setCurrentUser] = useState(null);
   const [username, setUsername] = useState('');
   const [avatar, setAvatar] = useState('');
   const [avatarSelected, setAvatarSelected] = useState(false);
@@ -74,25 +76,10 @@ const ProfilePage = () => {
       setWindowWidth(window.innerWidth);
     };
 
-    // const fetchUserData = async () => {
-    //   try {
-    //     const token = localStorage.getItem('token');
-    //     if (token) {
-    //     const decodedToken = jwtDecode(token);
-    //     setUsername(decodedToken.username);
-    //     setAvatar(decodedToken.avatar);
-    //     setFollowing(decodedToken.following.map((user) => user.username));
-    //     } else {
-    //       console.error('Token not found in localstorage');
-    //     }
-    //   } catch (error) {
-    //     console.error('Error fetching user data:', error);
-    //   }
-    // };
-
     window.addEventListener('resize', handleWindowResize);
+    
+    fetchUserData();
 
-    // fetchUserData();
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
@@ -131,6 +118,23 @@ const ProfilePage = () => {
   const handleChooseAvatar = () => {
     setButtonClicked(true)
     setShowAvatarBox(true);
+  };
+
+  const fetchUserData = async () => {
+    try {
+      const token = localStorage.getItem('token');
+
+      const { username } = jwtDecode(token);
+      setUsername(username);
+
+      // const { avatar } = await API.getSingleUser(username);
+      // setAvatar(avatar);
+
+      const following = (await API.getFollowing()).map(({ username }) => username);
+      setFollowing(following);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleSearch = () => {
@@ -182,8 +186,11 @@ const WelcomeMessage = ({ username }) => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             height: '100vh',
+            position: 'absolute',
+            zIndex: 0,
           },
           polaroid: {
+            backgroundColor: 'white',
             position: 'fixed',
             border: '10px solid white',
             borderBottomWidth: '75px',
@@ -247,7 +254,7 @@ const WelcomeMessage = ({ username }) => {
             <button onClick={handleChat}>Chat</button>
           </div>
             <div className='welcome'>
-            <WelcomeMessage username={username}/>
+            {currentUser &&<WelcomeMessage username={currentUser.username}/>}
             </div>
             {avatar && (
               <div style={styles.polaroid}>
@@ -261,8 +268,10 @@ const WelcomeMessage = ({ username }) => {
             )}
             
             <div>
-              <h2>{following}</h2>
               <img className='gallows-gang' id='gallows-gang' src='./images/GallowsGang.png' />
+              <ul>{following.map((username) => {
+                return <li>{username}</li>
+              })}</ul>
             </div>
             <div>
               <button className='hangman-button' style={styles.hangmanButton} onClick={hangmanChange}>

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import API from '../utils/api';
 import backgroundImgDesktop from '../assets/backgroundimg.png';
 import backgroundImgMobile from '../assets/mobilebkgimg.png';
 import backgroundImgTablet from '../assets/tabletbkgimg.png';
 
 const LoginForm = () => {
+    const navigate = useNavigate();
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -20,12 +24,10 @@ const LoginForm = () => {
       try {
         const response = await API.login(username, password);
         const token = response.token;
-        const user = response.user;
 
         localStorage.setItem('token', token);
-        localStorage.setItem('user', user);
-        localStorage.setItem('username', username)
-        window.location.href = '/profile';
+
+        navigate('/profile');
       } catch(error) {
         console.error('Login error:', error)
       }

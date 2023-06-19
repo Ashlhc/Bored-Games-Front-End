@@ -33,12 +33,12 @@ const API = {
 
 
   getSingleUser: async (username) => {
-    const response = await fetch(`${BASEURL}/user/${username}`);
+    const response = await fetch(`${BASEURL}/user/_/${username}`);
     return response.json();
   },
 
   getUsers: async () => {
-    const response = await fetch(`${BASEURL}/user`);
+    const response = await fetch(`${BASEURL}/`);
     return response.json();
   },
   
@@ -47,7 +47,10 @@ const API = {
     return response.json();
   },
 
- 
+ getCurrentUser: async () => {
+  const response = await fetch(`${BASEURL}/user/current`);
+  return response.json();
+ },
 
  followUser: async (id) => {
     const response = await fetch(`${BASEURL}/user/follow/${id}`, {
@@ -72,7 +75,11 @@ const API = {
   },
 
   getFollowing: async () => {
-    const response = await fetch(`${BASEURL}/user/following`);
+    const response = await fetch(`${BASEURL}/user/following`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
     return response.json();
   },
 
@@ -89,7 +96,7 @@ const API = {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
-    return response.json;
+    return response.json();
   },
 
   makeGuess: async (gameId, letter) => {
